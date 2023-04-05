@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.atom.panels.inner.TransaktionPanel">
+  <grid id="27dc6" binding="self" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="1100" height="650"/>
+    </constraints>
+    <properties>
+      <minimumSize width="10" height="10"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="51a2" class="javax.swing.JLabel" binding="transLabel">
+        <constraints border-constraint="First"/>
+        <properties>
+          <font name="Consolas" size="48" style="1"/>
+          <text value="Transaktionen"/>
+        </properties>
+      </component>
+      <grid id="c6741" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+    </children>
+  </grid>
+</form>
