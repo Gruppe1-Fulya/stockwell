@@ -1,12 +1,14 @@
 package org.atom.panels.inner;
 
 import org.atom.Database;
+import org.atom.Util;
 import org.atom.types.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
@@ -44,8 +46,8 @@ public class LagerPanel extends JPanel{
                     product.name,
                     product.category.name,
                     product.amount,
-                    product.unit_cost,
-                    product.amount * product.unit_cost
+                    Util.CoolNumber(product.unit_cost) + "₺",
+                    Util.CoolNumber(product.amount * product.unit_cost) + "₺"
             };
         }
 

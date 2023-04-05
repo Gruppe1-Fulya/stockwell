@@ -5,6 +5,7 @@ public class Transaction {
 
     public Product product;
     public Person initiator;
+    public Person client;
     public int amount;
     public int cost;
     public TransactionType transactionType;
@@ -13,6 +14,16 @@ public class Transaction {
         this.id = id;
         this.product = product;
         this.initiator = initiator;
+        this.amount = amount;
+        this.cost = cost;
+        this.transactionType = transactionType;
+    }
+
+    public Transaction(int id, Product product, Person initiator, Person client, int amount, int cost, TransactionType transactionType) {
+        this.id = id;
+        this.product = product;
+        this.initiator = initiator;
+        this.client = client;
         this.amount = amount;
         this.cost = cost;
         this.transactionType = transactionType;

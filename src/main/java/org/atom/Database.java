@@ -5,6 +5,9 @@ import org.atom.types.*;
 import java.util.ArrayList;
 
 public class Database {
+
+    public static Worker currentWorker;
+
     public static ArrayList<Product> lager = new ArrayList<>();
     public static ArrayList<ProductTemplate> templates = new ArrayList<>();
 
@@ -36,10 +39,23 @@ public class Database {
     }
 
     public static void BuyProduct(ProductTemplate temp, int amount, int unit_cost) {
-        // worker kısmı değişicek
-        Product product = new Product(temp, workers.get(0), lager.size(), amount, unit_cost);
+        Product product = new Product(temp, currentWorker, lager.size() + 1, amount, unit_cost);
         lager.add(product);
-        transactions.add(new Transaction(transactions.size(), product, workers.get(0),
+        transactions.add(new Transaction(transactions.size(), product, currentWorker,
                 amount, unit_cost, TransactionType.PURCHASE));
+    }
+
+    public static void SellProduct(Product product, Client client, int amount, int unit_cost) {
+        Product inLagerProduct = lager.stream()
+                .filter(p -> product.getId() == p.getId())
+                .findFirst()
+                .orElse(null);
+        if (inLagerProduct == null)
+            return;
+        inLagerProduct.amount -= amount;
+        if (inLagerProduct.amount <= 0)
+            lager.remove(inLagerProduct);
+        transactions.add(new Transaction(transactions.size(), inLagerProduct, currentWorker, client,
+                amount, unit_cost, TransactionType.SALE));
     }
 }

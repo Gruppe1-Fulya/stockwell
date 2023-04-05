@@ -60,6 +60,14 @@ public class MainPanel extends JFrame {
                 DisplayPanel(new KundenPanel());
             }
         });
+
+        ausloggenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LoginPanel();
+                dispose();
+            }
+        });
     }
 
     void DisplayPanel(JPanel panel) {

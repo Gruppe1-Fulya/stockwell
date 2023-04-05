@@ -1,6 +1,10 @@
 package org.atom.panels;
 
+import org.atom.Database;
+import org.atom.types.Worker;
+
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,15 +28,20 @@ public class LoginPanel extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String userName = usernameText.getText();
-                if (userName.length() <= 0) {
+                Worker user = Database.workers.stream()
+                        .filter(worker -> userName.equals(worker.userName))
+                        .findFirst()
+                        .orElse(null);
+                if (user == null) {
                     JOptionPane.showMessageDialog(loginPanel,
                             "Bitte geben Sie einen gültigen Benutzername ein.",
                             "Error",
                             JOptionPane.ERROR_MESSAGE
                     );
                 } else {
+                    Database.currentWorker = user;
                     new MainPanel(usernameText.getText());
-                    setVisible(false);
+                    dispose();
                 }
             }
         });

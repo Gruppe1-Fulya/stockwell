@@ -1,7 +1,7 @@
 package org.atom.panels.inner;
 
 import org.atom.Database;
-import org.atom.types.Product;
+import org.atom.Util;
 import org.atom.types.Transaction;
 import org.atom.types.TransactionType;
 
@@ -37,13 +37,15 @@ public class TransaktionPanel extends JPanel {
                 "Id",
                 "Product Id",
                 "Product Name",
+                "Initiator",
+                "Client",
                 "Transaction Type",
                 "Amount",
                 "per unit Cost/Income",
                 "Total Cost/Income"
         };
 
-        Object[][] data = new Object[Database.transactions.size()][7];
+        Object[][] data = new Object[Database.transactions.size()][9];
 
         for (int i = 0; i < Database.transactions.size(); i++) {
             Transaction transaction = Database.transactions.get(i);
@@ -51,11 +53,14 @@ public class TransaktionPanel extends JPanel {
                     transaction.getId(),
                     transaction.product.getId(),
                     transaction.product.name,
+                    transaction.initiator.name,
+                    (transaction.client != null) ? transaction.client.name : "",
                     transaction.transactionType,
-                    transaction.amount,
-                    transaction.cost,
-                    (transaction.transactionType == TransactionType.SALE) ? transaction.amount * transaction.cost :
-                            -1 * transaction.amount * transaction.cost
+                    Util.CoolNumber(transaction.amount),
+                    Util.CoolNumber(transaction.cost) + "₺",
+                    (transaction.transactionType == TransactionType.SALE) ?
+                            "+" + Util.CoolNumber(transaction.amount * transaction.cost) + "₺" :
+                            "-" + Util.CoolNumber(transaction.amount * transaction.cost) + "₺"
             };
         }
 
@@ -67,8 +72,14 @@ public class TransaktionPanel extends JPanel {
         buyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CreateBuyDialog(selfPanel);
+                new BuyDialog(selfPanel);
             }
+        });
+
+        sellButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SellDialog(selfPanel); }
         });
     }
 }
