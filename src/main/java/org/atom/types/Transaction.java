@@ -1,18 +1,28 @@
 package org.atom.types;
 
-enum TransactionType {
-    SALE,
-    PURCHASE
-}
-
 public class Transaction {
     private int id;
 
-    private Product product;
-    private Person initiator;
-
-    private int amount;
-
-
+    public Product product;
+    public Person initiator;
+    public int amount;
+    public int cost;
     public TransactionType transactionType;
+
+    public Transaction(int id, Product product, Person initiator, int amount, int cost, TransactionType transactionType) {
+        this.id = id;
+        this.product = product;
+        this.initiator = initiator;
+        this.amount = amount;
+        this.cost = cost;
+        this.transactionType = transactionType;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

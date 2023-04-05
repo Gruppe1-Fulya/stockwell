@@ -36,8 +36,7 @@ public class MainPanel extends JFrame {
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel homePanel = new HomePanel();
-                DisplayPanel(homePanel);
+                DisplayPanel(new HomePanel());
             }
         });
 
