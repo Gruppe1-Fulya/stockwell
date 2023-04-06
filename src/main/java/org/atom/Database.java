@@ -28,14 +28,15 @@ public class Database {
         templates.add(new ProductTemplate(2, "Stein", "0x02", category1));
         templates.add(new ProductTemplate(3, "Parol", "0x03", category2));
 
-        workers.add(new Worker(1, "çağlar", "cacarekt"));
-        workers.add(new Worker(2, "burak", "rugotr"));
+        workers.add(new Worker(1, "Çağlar Kabaca", "caglarkabaca"));
+        workers.add(new Worker(2, "Burak Arslan", "burakarslan8"));
 
         lager.add(new Product(templates.get(0), workers.get(0), 1, 1000, 10));
         lager.add(new Product(templates.get(1), workers.get(0), 2, 2000, 50));
         lager.add(new Product(templates.get(2), workers.get(1), 3, 50000, 10));
 
-        clients.add(new Client(1, "dummy", "5555555555"));
+        clients.add(new Client(1, "Hans", "Zimmer", "SAP", "5555555555"));
+        clients.add(new Client(2, "Elon", "Musk", "Tesla", "5555555555"));
     }
 
     public static void BuyProduct(ProductTemplate temp, int amount, int unit_cost) {

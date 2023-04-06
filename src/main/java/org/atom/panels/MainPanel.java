@@ -33,6 +33,8 @@ public class MainPanel extends JFrame {
 
         setResizable(false);
 
+        DisplayPanel(new HomePanel());
+
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
