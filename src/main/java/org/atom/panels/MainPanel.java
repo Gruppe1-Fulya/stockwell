@@ -27,6 +27,7 @@ public class MainPanel extends JFrame {
         helloText.setText(helloText.getText() + " " + userName);
         helloText.setBorder(new EmptyBorder(5, 0, 0, 5));
         setSize(1280, 720);
+        setLocationRelativeTo(null);
         setVisible(true);
         setTitle("Stockwell");
         setDefaultCloseOperation(EXIT_ON_CLOSE);

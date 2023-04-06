@@ -4,7 +4,6 @@ import org.atom.Database;
 import org.atom.types.Worker;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,9 +15,9 @@ public class LoginPanel extends JFrame {
     private JButton einloggenButton;
 
     public LoginPanel() {
-
         add(mainPanel);
         setSize(640, 480);
+        setLocationRelativeTo(null);
         setVisible(true);
         setTitle("Stockwell");
         setDefaultCloseOperation(EXIT_ON_CLOSE);

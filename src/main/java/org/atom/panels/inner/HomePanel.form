@@ -124,7 +124,7 @@
                 </constraints>
                 <properties>
                   <font name="Consolas" size="24" style="2"/>
-                  <text value="Total Sales ₺"/>
+                  <text value="Total Outgoings ₺"/>
                 </properties>
               </component>
               <component id="7e3a9" class="javax.swing.JLabel" binding="totalSales">
