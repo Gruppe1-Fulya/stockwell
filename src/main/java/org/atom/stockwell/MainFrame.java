@@ -1,5 +1,7 @@
 package org.atom.stockwell;
 
+import org.atom.stockwell.db.DatabaseManager;
+
 import javax.swing.*;
 // Genel olarak programın çalışacağı pencere bu olacak. Gerekli ayarlamalar da buradan yapılacak.
 public class MainFrame extends JFrame {

@@ -1,6 +1,11 @@
 package org.atom.stockwell;
 
+import org.atom.stockwell.db.DatabaseManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +24,14 @@ public class LoginPanel extends JPanel{
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword()); // passwordlar char[] olarak aliniyor
 
-                if(username.equals("admin") && password.equals("admin")){
+
+                DatabaseManager db = new DatabaseManager();
+
+                if(db.getMitarbeiterList()
+                        .stream()
+                        .filter(mitarbeiter -> mitarbeiter.getUsername().equals(username) && mitarbeiter.getPassword().equals(password))
+                        .count() > 0
+                ){
                     System.out.println("open Home Screen");
                 }
             }

@@ -10,6 +10,14 @@ public class Mitarbeiter extends Person{
         this.password = password;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     @Override
     public String toString() {
         return "Mitarbeiter { name = " + username + " password = " + password + " }";
