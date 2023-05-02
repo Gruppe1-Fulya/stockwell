@@ -1,3 +1,5 @@
+package org.atom.stockwell;
+
 import javax.swing.*;
 // Genel olarak programın çalışacağı pencere bu olacak. Gerekli ayarlamalar da buradan yapılacak.
 public class MainFrame extends JFrame {
