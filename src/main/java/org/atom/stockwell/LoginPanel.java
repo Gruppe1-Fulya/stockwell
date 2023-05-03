@@ -19,7 +19,7 @@ public class LoginPanel extends JPanel{
     private JTextField usernameField;
     private JPasswordField passwordField;
 
-    public LoginPanel(){
+    public LoginPanel(MainFrame mainFrame){
 
         loginButton.addActionListener(new ActionListener() {
             @Override
@@ -37,7 +37,8 @@ public class LoginPanel extends JPanel{
                                 mitarbeiter.getUsername().equals(username) &&
                                         mitarbeiter.getPassword().equals(password))
                 ){
-                    System.out.println("open Home Screen");
+                    System.out.println("show Home Screen");
+                    mainFrame.showHomePanel();
                 }
             }
         });
