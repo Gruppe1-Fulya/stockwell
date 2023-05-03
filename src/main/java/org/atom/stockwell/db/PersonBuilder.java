@@ -29,6 +29,11 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder setId(int id) {
+        currentPerson.setId(id);
+        return this;
+    }
+
     public Person doneBuild() {
         return currentPerson;
     }

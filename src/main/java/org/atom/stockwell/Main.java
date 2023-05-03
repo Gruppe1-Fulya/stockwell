@@ -5,6 +5,8 @@ import javax.xml.crypto.Data;
 
 import org.atom.stockwell.db.DatabaseManager;
 import org.atom.stockwell.db.Mitarbeiter;
+import org.atom.stockwell.db.Person;
+import org.atom.stockwell.db.PersonBuilder;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,6 +26,20 @@ public class Main {
 
         var ctx = new SpringApplicationBuilder(Main.class)
                 .headless(false).run(args);
+
+        Person person = new PersonBuilder()
+                .startBuild()
+                .setId(2)
+                .setName("name")
+                .setEmail("mail")
+                .setAdress("adress")
+                .setPhoneNumber("5555")
+                .doneBuild();
+
+        DatabaseManager db = new DatabaseManager();
+
+        boolean r = db.createNewPerson(person);
+        System.out.println(r);
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

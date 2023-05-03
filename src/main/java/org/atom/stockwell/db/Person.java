@@ -7,6 +7,14 @@ public class Person {
     private String address;
     private String email;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -37,5 +45,10 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Person id = " + id + " name = " + name + " email = " + email;
     }
 }

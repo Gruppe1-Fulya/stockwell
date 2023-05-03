@@ -42,4 +42,36 @@ public class DatabaseManager {
                     ).doneBuild());
     }
 
+    public List<Person> getPersonList() {
+        String sql = """
+                select * from person
+                """;
+        PersonBuilder personBuilder = new PersonBuilder();
+        return (List<Person>) jdbc.query(sql, (rs, rn) -> personBuilder
+                .startBuild()
+                .setId(rs.getInt("personId"))
+                .setName(rs.getString("name"))
+                .setPhoneNumber(rs.getString("telefonNo"))
+                .setAdress(rs.getString("adresse"))
+                .setEmail(rs.getString("email"))
+                .doneBuild());
+    }
+
+    public boolean createNewPerson(Person person) {
+        String sql = "insert into person(personId, name, telefonNo, adresse, email) values(" +
+                person.getId() + ", '" +
+                person.getName() + "', " +
+                person.getPhoneNo() + ", '" +
+                person.getAddress() + "', '" +
+                person.getEmail() + "')";
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
 }
