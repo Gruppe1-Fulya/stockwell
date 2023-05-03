@@ -27,8 +27,19 @@ public class DatabaseManager {
         String sql = """
                 select * from mitarbeiter
                 """;
-        return (List<Mitarbeiter>) jdbc.query(sql,
-                (rs, rc) -> new Mitarbeiter(rs.getString("username"), rs.getString("password")));
+        PersonBuilder personBuilder = new PersonBuilder();
+        MitarbeiterBuilder mitarbeiterBuilder = new MitarbeiterBuilder();
+        return (List<Mitarbeiter>) jdbc.query(sql, (rs, rowNum) ->
+            mitarbeiterBuilder
+                    .startBuild()
+                    .setPerson(
+                        personBuilder.startBuild()
+                            .setName("Test")
+                            .doneBuild()
+                    )
+                    .setUsername(rs.getString("username")
+                    ).setPassword(rs.getString("password")
+                    ).doneBuild());
     }
 
 }

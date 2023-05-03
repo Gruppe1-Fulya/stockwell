@@ -4,11 +4,7 @@ public class Mitarbeiter extends Person{
 
     private String username;
     private String password;
-
-    public Mitarbeiter(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+    public String title;
 
     public String getUsername() {
         return username;
@@ -18,9 +14,12 @@ public class Mitarbeiter extends Person{
         return password;
     }
 
+    public void setUsername(String username) { this.username = username; }
+    public void setPassword(String password) { this.password = password; }
+
     @Override
     public String toString() {
-        return "Mitarbeiter { name = " + username + " password = " + password + " }";
+        return "Mitarbeiter { name " + getName() + " username = " + username + " password = " + password + " }";
     }
 
 }
