@@ -1,6 +1,7 @@
 package org.atom.stockwell;
 
 import org.atom.stockwell.db.DatabaseManager;
+import org.atom.stockwell.db.Mitarbeiter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -8,6 +9,7 @@ import javax.swing.*;
 import javax.xml.crypto.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class LoginPanel extends JPanel{
 
@@ -26,9 +28,14 @@ public class LoginPanel extends JPanel{
 
 
                 DatabaseManager db = new DatabaseManager();
+                List<Mitarbeiter> mitarbeiterList = db.getMitarbeiterList();
 
-                if(db.getMitarbeiterList()
-                        .stream()
+                for (Mitarbeiter mitarbeiter: mitarbeiterList) {
+                    System.out.println(mitarbeiter.toString());
+                }
+
+
+                if(mitarbeiterList.stream()
                         .filter(mitarbeiter -> mitarbeiter.getUsername().equals(username) && mitarbeiter.getPassword().equals(password))
                         .count() > 0
                 ){
