@@ -1,105 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.atom.stockwell.HomePanel">
-  <grid id="27dc6" binding="hPanel" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="hPanel" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="5" y="5" width="500" height="400"/>
+      <xy x="5" y="5" width="755" height="677"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="fec45" binding="SidePanel" layout-manager="GridLayoutManager" row-count="8" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="0">
+      <grid id="fec45" binding="SidePanel" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="0">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="0" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="2" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
         </constraints>
         <properties/>
-        <border type="etched"/>
+        <border type="bevel-raised"/>
         <children>
           <component id="8243" class="javax.swing.JButton" binding="homeButton">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <enabled value="true"/>
               <focusPainted value="false"/>
               <focusable value="false"/>
-              <font size="20"/>
-              <text value="Home"/>
+              <font name="Segoe UI Semibold" size="16"/>
+              <text value="HOME"/>
             </properties>
           </component>
-          <vspacer id="a0f46">
+          <component id="21d53" class="javax.swing.JButton" binding="LAGERButton" default-binding="true">
             <constraints>
-              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <vspacer id="c899c">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <vspacer id="b422e">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <hspacer id="afafd">
-            <constraints>
-              <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
-          <component id="21d53" class="javax.swing.JButton" binding="lagerButton" default-binding="true">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <focusPainted value="false"/>
               <focusable value="false"/>
-              <font size="20"/>
-              <text value="Lager"/>
+              <font name="Segoe UI Semibold" size="16"/>
+              <text value="LAGER"/>
             </properties>
           </component>
-          <component id="18a30" class="javax.swing.JButton" binding="transaktionenButton" default-binding="true">
+          <component id="18a30" class="javax.swing.JButton" binding="TRANSAKTIONENButton" default-binding="true">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <focusPainted value="false"/>
               <focusable value="false"/>
-              <font size="20"/>
-              <text value="Transaktionen"/>
+              <font name="Segoe UI Semibold" size="16"/>
+              <text value="TRANSAKTIONEN"/>
             </properties>
           </component>
-          <component id="1c6d8" class="javax.swing.JButton" binding="aboutButton" default-binding="true">
+          <component id="1c6d8" class="javax.swing.JButton" binding="ÜBERUNSButton" default-binding="true">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <focusPainted value="false"/>
               <focusable value="false"/>
-              <font size="20"/>
-              <text value="About"/>
+              <font name="Segoe UI Semibold" size="16"/>
+              <text value="ÜBER UNS"/>
+            </properties>
+          </component>
+          <hspacer id="85362">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+      <grid id="e42f1" binding="TopPanel" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="bevel-raised"/>
+        <children>
+          <component id="90cb8" class="javax.swing.JButton" binding="abmeldenButton">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <focusPainted value="false"/>
+              <focusable value="false"/>
+              <font name="Yu Gothic UI Semibold" size="14"/>
+              <text value="Abmelden"/>
+            </properties>
+          </component>
+          <hspacer id="bfe75">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="10f95" class="javax.swing.JLabel" binding="ImageLabel">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="images/user24x24.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="72260" class="javax.swing.JLabel" binding="usernameLabel">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Yu Gothic UI Semibold" size="14"/>
+              <text value="username"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="e42f1" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="96e03" binding="MainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="2" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
-        <border type="none"/>
+        <border type="bevel-raised"/>
         <children/>
       </grid>
-      <vspacer id="4ee1e">
+      <hspacer id="34ed9">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
-      <hspacer id="8794b">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
     </children>
