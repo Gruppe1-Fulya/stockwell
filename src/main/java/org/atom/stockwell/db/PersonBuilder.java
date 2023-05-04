@@ -29,7 +29,7 @@ public class PersonBuilder {
         return this;
     }
 
-    public PersonBuilder setId(int id) {
+    public PersonBuilder setId(String id) {
         currentPerson.setId(id);
         return this;
     }

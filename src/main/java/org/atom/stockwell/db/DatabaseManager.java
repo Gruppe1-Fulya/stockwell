@@ -22,6 +22,9 @@ public class DatabaseManager {
         jdbc = new JdbcTemplate(dataSource);
     }
 
+    /*
+        SELECT FUNCTIONS
+     */
 
     public List<Mitarbeiter> getMitarbeiterList() {
         String sql = """
@@ -49,7 +52,7 @@ public class DatabaseManager {
         PersonBuilder personBuilder = new PersonBuilder();
         return (List<Person>) jdbc.query(sql, (rs, rn) -> personBuilder
                 .startBuild()
-                .setId(rs.getInt("personId"))
+                .setId(rs.getString("personId"))
                 .setName(rs.getString("name"))
                 .setPhoneNumber(rs.getString("telefonNo"))
                 .setAdress(rs.getString("adresse"))
@@ -57,13 +60,96 @@ public class DatabaseManager {
                 .doneBuild());
     }
 
+    /*
+        CREATE FUNCTIONS
+     */
+
     public boolean createNewPerson(Person person) {
-        String sql = "insert into person(personId, name, telefonNo, adresse, email) values(" +
-                person.getId() + ", '" +
-                person.getName() + "', " +
-                person.getPhoneNo() + ", '" +
-                person.getAddress() + "', '" +
-                person.getEmail() + "')";
+        String sql = "insert into " +
+                "person(personId, name, telefonNo, adresse, email) " +
+                "values('%s', '%s', '%s', '%s', '%s')";
+
+        sql = String.format(sql,
+                person.getId(),
+                person.getName(),
+                person.getPhoneNo(),
+                person.getAddress(),
+                person.getEmail());
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean createNewMitarbeiter(Mitarbeiter mitarbeiter) {
+
+        String sql = new String();
+
+        if (!this.getPersonList()
+                .stream()
+                .anyMatch(person -> person.getId().equals(mitarbeiter.getId()))) {
+
+            sql = "insert into " +
+                    "person(personId, name, telefonNo, adresse, email) " +
+                    "values('%s', '%s', '%s', '%s', '%s')";
+
+            sql = String.format(sql,
+                    mitarbeiter.getId(),
+                    mitarbeiter.getName(),
+                    mitarbeiter.getPhoneNo(),
+                    mitarbeiter.getAddress(),
+                    mitarbeiter.getEmail());
+
+            try {
+                jdbc.execute(sql);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return false;
+            }
+
+        }
+
+
+        sql = "insert into " +
+            "mitarbeiter(personId, username, password) " +
+            "values('%s', '%s', '%s')";
+
+        sql = String.format(sql,
+                mitarbeiter.getId(),
+                mitarbeiter.getUsername(),
+                mitarbeiter.getPassword());
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    /*
+        UPDATE FUNCTIONS
+     */
+
+    public boolean updatePerson(Person person) {
+        String sql = "update person set " +
+                "name = '%s'," +
+                "telefonNo = '%s'," +
+                "adresse = '%s'," +
+                "email = '%s'" +
+                "where personId = '%s'";
+
+        sql = String.format(sql,
+                person.getName(),
+                person.getPhoneNo(),
+                person.getAddress(),
+                person.getEmail(),
+                person.getId());
 
         try {
             jdbc.execute(sql);
