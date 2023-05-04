@@ -28,6 +28,17 @@ public class Main {
         var ctx = new SpringApplicationBuilder(Main.class)
                 .headless(false).run(args);
 
+//        DatabaseManager db = new DatabaseManager();
+//
+//        Product dummy = new ProductBuilder()
+//                .startBuild()
+//                .setName("dummy")
+//                .setBarcodeId("0001")
+//                .setCategory("dummy category")
+//                .doneBuild();
+//
+//        db.createNewProduct(dummy);
+
         try {
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             FlatArcDarkIJTheme.setup();

@@ -74,6 +74,27 @@ public class DatabaseManager {
                 .doneBuild());
     }
 
+    public Lager getLager() {
+        String sql = """
+                select * from lager
+                """;
+        ProductBuilder productBuilder = new ProductBuilder();
+        Lager lager = new Lager();
+        List<Product> products = jdbc.query(sql, (rs, rn) -> productBuilder
+                .startBuild()
+                .setId(rs.getString("id"))
+                .setBarcodeId(rs.getString("barcode"))
+                .setName(rs.getString("name"))
+                .setCategory(rs.getString("category"))
+                .doneBuild());
+
+        for (Product product : products) {
+            lager.addProduct(product);
+        }
+
+        return lager;
+    }
+
     /*
         CREATE FUNCTIONS
      */
@@ -185,6 +206,50 @@ public class DatabaseManager {
                 person.getAddress(),
                 person.getEmail(),
                 person.getId());
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean updateMitarbeiter(Mitarbeiter mitarbeiter) {
+        String sql = "update mitarbeiter set " +
+                "username = '%s'," +
+                "password = '%s'," +
+                "where personId = '%s'";
+
+        sql = String.format(sql,
+                mitarbeiter.getUsername(),
+                mitarbeiter.getPassword(),
+                mitarbeiter.getId()
+        );
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean updateProduct(Product product) {
+        String sql = "update product set " +
+                "barcode = '%s'," +
+                "name = '%s'," +
+                "category = '%s" +
+                "where id = '%s'";
+
+        sql = String.format(sql,
+                product.getBarcodeId(),
+                product.getName(),
+                product.getCategory(),
+                product.getId()
+        );
 
         try {
             jdbc.execute(sql);
