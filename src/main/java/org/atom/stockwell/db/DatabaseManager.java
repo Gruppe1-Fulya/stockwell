@@ -60,6 +60,20 @@ public class DatabaseManager {
                 .doneBuild());
     }
 
+    public List<Product> getProductList() {
+        String sql = """
+                select * from product
+                """;
+        ProductBuilder productBuilder = new ProductBuilder();
+        return (List<Product>) jdbc.query(sql, (rs, rn) -> productBuilder
+                .startBuild()
+                .setId(rs.getString("id"))
+                .setBarcodeId(rs.getString("barcode"))
+                .setName(rs.getString("name"))
+                .setCategory(rs.getString("category"))
+                .doneBuild());
+    }
+
     /*
         CREATE FUNCTIONS
      */
@@ -130,6 +144,27 @@ public class DatabaseManager {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public boolean createNewProduct(Product product) {
+        String sql = "insert into " +
+                "product(id, barcode, name, category) " +
+                "values('%s', '%s', '%s', '%s')";
+
+        sql = String.format(sql,
+                product.getId(),
+                product.getBarcodeId(),
+                product.getName(),
+                product.getCategory());
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
     }
 
     /*
