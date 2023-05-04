@@ -3,6 +3,10 @@ package org.atom.stockwell;
 import javax.swing.*;
 import javax.xml.crypto.Data;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
 import org.atom.stockwell.db.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
@@ -21,12 +25,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class Main {
 
     public static void main(String [] args){
-
         var ctx = new SpringApplicationBuilder(Main.class)
                 .headless(false).run(args);
 
         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            FlatArcDarkIJTheme.setup();
         } catch (Exception e) {
             e.printStackTrace();
         }
