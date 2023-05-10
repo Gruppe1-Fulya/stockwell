@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class MainPanel extends JPanel {
 
-    private JPanel hPanel;
+    private JPanel mPanel;
     private JPanel SidePanel;
     private JButton homeButton;
     private JButton lagerButton;
@@ -30,7 +30,7 @@ public class MainPanel extends JPanel {
     }
 
     public JPanel getPanel(){
-        return hPanel;
+        return mPanel;
     }
 
     public String getUsername(){

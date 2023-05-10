@@ -11,12 +11,12 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280,720);
 
-        // loginPanel ve homePaneller class isimleriyken lPanel ve hPanel onlara ait JPaneller.
+        // loginPanel ve homePaneller class isimleriyken lPanel ve mPanel onlara ait JPaneller.
         loginPanel = new LoginPanel(this);
         JPanel lPanel = loginPanel.getPanel();
 
         mainPanel = new MainPanel(this);
-        JPanel hPanel = mainPanel.getPanel();
+        JPanel mPanel = mainPanel.getPanel();
 
         setContentPane(lPanel);
     }
