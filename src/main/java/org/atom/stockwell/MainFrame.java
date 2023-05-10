@@ -1,11 +1,9 @@
 package org.atom.stockwell;
 
-import org.atom.stockwell.db.DatabaseManager;
-
 import javax.swing.*;
 // Genel olarak programın çalışacağı pencere bu olacak. Gerekli ayarlamalar da buradan yapılacak.
 public class MainFrame extends JFrame {
-    private HomePanel homePanel;
+    private MainPanel mainPanel;
     private LoginPanel loginPanel;
     public MainFrame(){
         setTitle("Stockwell");
@@ -17,8 +15,8 @@ public class MainFrame extends JFrame {
         loginPanel = new LoginPanel(this);
         JPanel lPanel = loginPanel.getPanel();
 
-        homePanel = new HomePanel(this);
-        JPanel hPanel = homePanel.getPanel();
+        mainPanel = new MainPanel(this);
+        JPanel hPanel = mainPanel.getPanel();
 
         setContentPane(lPanel);
     }
@@ -27,11 +25,11 @@ public class MainFrame extends JFrame {
         return loginPanel;
     }
 
-    public HomePanel getHomePanel(){
-        return homePanel;
+    public MainPanel getMainPanel(){
+        return mainPanel;
     }
-    public void showHomePanel() {
-        setContentPane(homePanel.getPanel());
+    public void showMainPanel() {
+        setContentPane(mainPanel.getPanel());
         validate();
     }
 

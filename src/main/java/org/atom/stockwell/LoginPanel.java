@@ -73,9 +73,9 @@ public class LoginPanel extends JPanel{
                         mitarbeiter.getUsername().equals(username) &&
                                 mitarbeiter.getPassword().equals(password))
         ){
-            System.out.println("show Home Screen");
-            mainFrame.showHomePanel();
-            mainFrame.getHomePanel().setUsername(username);
+            System.out.println("show Main Panel");
+            mainFrame.showMainPanel();
+            mainFrame.getMainPanel().setUsername(username);
             usernameField.setText("");
             passwordField.setText("");
         }else{
