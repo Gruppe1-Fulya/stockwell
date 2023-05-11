@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,15 +96,59 @@ public class DatabaseManager {
                 select * from transaktions
                 """;
 
-        List<Product> products = getProductList();
-        List<Mitarbeiter> mitarbeiters = getMitarbeiterList();
-        List<Person> persons = getPersonList();
-        CustomTransaktionMapper mapper = new CustomTransaktionMapper(products, persons, mitarbeiters);
+        List<Product> productList = getProductList();
+        List<Mitarbeiter> mitarbeiterList = getMitarbeiterList();
+        List<Person> personList = getPersonList();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
 
-        return (List<Transaktion>) jdbc.query(
-                sql,
-                mapper
-        );
+        TransaktionBuilder transaktionBuilder = new TransaktionBuilder();
+
+        return (List<Transaktion>) jdbc.query(sql, (rs, rn) -> {
+            try {
+                return transaktionBuilder
+                        .setId(rs.getString("transaktionId"))
+                        .setType(rs.getString("type"))
+                        .setAmount(rs.getInt("amount"))
+                        .setCost(rs.getInt("cost"))
+                        .setDate(dateFormat.parse(rs.getString("date")))
+                        .setProduct(
+                                productList.stream()
+                                        .filter(product -> {
+                                            try {
+                                                return product.getId().equals(rs.getString("productId"));
+                                            } catch (SQLException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        })
+                                        .findFirst().get()
+                        )
+                        .setKunde(
+                                personList.stream()
+                                        .filter(person -> {
+                                            try {
+                                                return person.getId().equals(rs.getString("kundeId"));
+                                            } catch (SQLException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        })
+                                        .findFirst().get()
+                        )
+                        .setMitarbeiter(
+                                mitarbeiterList.stream()
+                                        .filter(mitarbeiter -> {
+                                            try {
+                                                return mitarbeiter.getId().equals(rs.getString("mitarbeiterId"));
+                                            } catch (SQLException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        })
+                                        .findFirst().get()
+                        )
+                        .doneBuild();
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
 
@@ -155,7 +200,7 @@ public class DatabaseManager {
 
     public boolean createNewMitarbeiter(Mitarbeiter mitarbeiter) {
 
-        String sql = new String();
+        String sql;
 
         if (!this.getPersonList()
                 .stream()
@@ -345,6 +390,38 @@ public class DatabaseManager {
             return false;
         }
 
+    }
+
+    /*
+        DELETE FUNCTIONS
+     */
+
+    public boolean deletePerson(Person person) {
+        String sql = "delete from person " +
+                "where personId = '%s'";
+        sql = String.format(sql, person.getId());
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean deleteMitarbeiter(Mitarbeiter mitarbeiter) {
+        String sql = "delete from mitarbeiter " +
+                "where personId = '%s'";
+        sql = String.format(sql, mitarbeiter.getId());
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
 }
