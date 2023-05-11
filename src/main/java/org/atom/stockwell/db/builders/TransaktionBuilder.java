@@ -1,5 +1,7 @@
 package org.atom.stockwell.db.builders;
 
+import org.atom.stockwell.db.classes.Mitarbeiter;
+import org.atom.stockwell.db.classes.Person;
 import org.atom.stockwell.db.classes.Product;
 import org.atom.stockwell.db.classes.Transaktion;
 
@@ -40,6 +42,16 @@ public class TransaktionBuilder {
 
     public TransaktionBuilder setDate(Date date) {
         currentTransaktion.setDate(date);
+        return this;
+    }
+
+    public TransaktionBuilder setKunde(Person kunde) {
+        currentTransaktion.setKunde(kunde);
+        return this;
+    }
+
+    public TransaktionBuilder setMitarbeiter(Mitarbeiter mitarbeiter) {
+        currentTransaktion.setMitarbeiter(mitarbeiter);
         return this;
     }
 

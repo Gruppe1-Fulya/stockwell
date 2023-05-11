@@ -33,25 +33,6 @@ public class DatabaseManager {
         SELECT FUNCTIONS
      */
 
-    public List<Mitarbeiter> getMitarbeiterList() {
-        String sql = """
-                select * from mitarbeiter
-                """;
-        PersonBuilder personBuilder = new PersonBuilder();
-        MitarbeiterBuilder mitarbeiterBuilder = new MitarbeiterBuilder();
-        return (List<Mitarbeiter>) jdbc.query(sql, (rs, rowNum) ->
-            mitarbeiterBuilder
-                    .startBuild()
-                    .setPerson(
-                        personBuilder.startBuild()
-                            .setName("Test")
-                            .doneBuild()
-                    )
-                    .setUsername(rs.getString("username")
-                    ).setPassword(rs.getString("password")
-                    ).doneBuild());
-    }
-
     public List<Person> getPersonList() {
         String sql = """
                 select * from person
@@ -65,6 +46,34 @@ public class DatabaseManager {
                 .setAdress(rs.getString("adresse"))
                 .setEmail(rs.getString("email"))
                 .doneBuild());
+    }
+
+    public List<Mitarbeiter> getMitarbeiterList() {
+        String sql = """
+                select * from mitarbeiter
+                """;
+        MitarbeiterBuilder mitarbeiterBuilder = new MitarbeiterBuilder();
+
+        List<Person> personList = getPersonList();
+
+        return (List<Mitarbeiter>) jdbc.query(sql, (rs, rowNum) ->
+            mitarbeiterBuilder
+                    .startBuild()
+                    .setPerson(
+                            personList
+                                    .stream()
+                                    .filter(person -> {
+                                        try {
+                                            return person.getId().equals(rs.getString("personId"));
+                                        } catch (SQLException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    })
+                                    .findFirst().get()
+                    )
+                    .setUsername(rs.getString("username")
+                    ).setPassword(rs.getString("password")
+                    ).doneBuild());
     }
 
     public List<Product> getProductList() {
@@ -87,7 +96,9 @@ public class DatabaseManager {
                 """;
 
         List<Product> products = getProductList();
-        CustomTransaktionMapper mapper = new CustomTransaktionMapper(products);
+        List<Mitarbeiter> mitarbeiters = getMitarbeiterList();
+        List<Person> persons = getPersonList();
+        CustomTransaktionMapper mapper = new CustomTransaktionMapper(products, persons, mitarbeiters);
 
         return (List<Transaktion>) jdbc.query(
                 sql,
@@ -207,7 +218,30 @@ public class DatabaseManager {
             System.out.println(e.getMessage());
             return false;
         }
+    }
 
+    public boolean createNewTransaktion(Transaktion transaktion) {
+        String sql = "insert into " +
+                "transaktions(transaktionId, productId, type, amount, date, cost, kundeId, mitarbeiterId) " +
+                "values('%s', '%s', '%s', '%d', '%s', '%d', '%s', '%s')";
+
+        sql = String.format(sql,
+                transaktion.getId(),
+                transaktion.getProduct().getId(),
+                transaktion.getType(),
+                transaktion.getAmount(),
+                transaktion.getDate(),
+                transaktion.getCost(),
+                transaktion.getKunde().getId(),
+                transaktion.getMitarbeiter().getId());
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     /*
@@ -280,6 +314,37 @@ public class DatabaseManager {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public boolean updateTransaktion(Transaktion transaktion) {
+        String sql = "update transaktions set " +
+                "productId = '%s', " +
+                "type = '%s', " +
+                "amount = '%d', " +
+                "date = '%s', " +
+                "cost = '%d'," +
+                "kundeId = '%s', " +
+                "mitarbeiterId = '%s' " +
+                "where transaktionId = '%s'";
+
+        sql = String.format(sql,
+                transaktion.getProduct().getId(),
+                transaktion.getType(),
+                transaktion.getAmount(),
+                transaktion.getDate(),
+                transaktion.getCost(),
+                transaktion.getKunde().getId(),
+                transaktion.getMitarbeiter().getId(),
+                transaktion.getId());
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
     }
 
 }

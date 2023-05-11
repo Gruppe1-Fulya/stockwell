@@ -12,10 +12,14 @@ import java.util.List;
 public class CustomTransaktionMapper implements RowMapper<Transaktion> {
 
     List<Product> productList;
+    List<Person> personList;
+    List<Mitarbeiter> mitarbeiterList;
     SimpleDateFormat dateFormat;
 
-    public CustomTransaktionMapper(List<Product> products) {
+    public CustomTransaktionMapper(List<Product> products, List<Person> persons, List<Mitarbeiter> mitarbeiters) {
         productList = products;
+        personList = persons;
+        mitarbeiterList = mitarbeiters;
         dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
     }
 

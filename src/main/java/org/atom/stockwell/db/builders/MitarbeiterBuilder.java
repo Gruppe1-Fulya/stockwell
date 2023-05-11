@@ -13,6 +13,7 @@ public class MitarbeiterBuilder {
     }
 
     public MitarbeiterBuilder setPerson(Person person) {
+        currentMitarbeiter.setId(person.getId());
         currentMitarbeiter.setName(person.getName());
         currentMitarbeiter.setEmail(person.getEmail());
         currentMitarbeiter.setAddress(person.getAddress());

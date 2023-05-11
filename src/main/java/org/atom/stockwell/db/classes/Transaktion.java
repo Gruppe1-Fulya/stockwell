@@ -11,6 +11,9 @@ public class Transaktion {
     private int cost;
     private Date date;
 
+    private Person kunde;
+    private Mitarbeiter mitarbeiter;
+
     public Transaktion() {
         id = UUID.randomUUID().toString();
     }
@@ -61,5 +64,21 @@ public class Transaktion {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Person getKunde() {
+        return kunde;
+    }
+
+    public void setKunde(Person kunde) {
+        this.kunde = kunde;
+    }
+
+    public Mitarbeiter getMitarbeiter() {
+        return mitarbeiter;
+    }
+
+    public void setMitarbeiter(Mitarbeiter mitarbeiter) {
+        this.mitarbeiter = mitarbeiter;
     }
 }
