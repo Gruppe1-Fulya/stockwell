@@ -1,4 +1,7 @@
-package org.atom.stockwell.db;
+package org.atom.stockwell.db.builders;
+
+import org.atom.stockwell.db.classes.Mitarbeiter;
+import org.atom.stockwell.db.classes.Person;
 
 public class MitarbeiterBuilder {
 

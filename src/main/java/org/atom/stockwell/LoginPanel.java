@@ -1,13 +1,9 @@
 package org.atom.stockwell;
 
 import org.atom.stockwell.db.DatabaseManager;
-import org.atom.stockwell.db.Mitarbeiter;
-import org.atom.stockwell.db.Person;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.atom.stockwell.db.classes.Mitarbeiter;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.event.*;
 import java.util.List;
 

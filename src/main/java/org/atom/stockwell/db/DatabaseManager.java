@@ -1,11 +1,18 @@
 package org.atom.stockwell.db;
 
+import org.atom.stockwell.db.builders.MitarbeiterBuilder;
+import org.atom.stockwell.db.builders.PersonBuilder;
+import org.atom.stockwell.db.builders.ProductBuilder;
+import org.atom.stockwell.db.builders.TransaktionBuilder;
+import org.atom.stockwell.db.classes.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
-import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseManager {
@@ -72,6 +79,21 @@ public class DatabaseManager {
                 .setName(rs.getString("name"))
                 .setCategory(rs.getString("category"))
                 .doneBuild());
+    }
+
+    public List<Transaktion> getTransaktions() {
+        String sql = """
+                select * from transaktions
+                """;
+
+        List<Product> products = getProductList();
+        CustomTransaktionMapper mapper = new CustomTransaktionMapper(products);
+
+        return (List<Transaktion>) jdbc.query(
+                sql,
+                mapper
+        );
+
     }
 
     public Lager getLager() {

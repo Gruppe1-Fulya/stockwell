@@ -1,4 +1,4 @@
-package org.atom.stockwell.db;
+package org.atom.stockwell.db.classes;
 
 public class Mitarbeiter extends Person{
 
