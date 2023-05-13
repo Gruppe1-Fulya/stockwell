@@ -1,6 +1,9 @@
 package org.atom.stockwell;
 
+import org.atom.stockwell.inner.HomePanel;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,10 +19,21 @@ public class MainPanel extends JPanel {
     private JLabel usernameLabel;
     private JPanel TopPanel;
     private JLabel ImageLabel;
-    private JPanel MainPanel;
+    private JButton kundenButton;
     private String username;
+    private JPanel InnerPanel;
+    private JPanel displayedPanel;
+
     public MainPanel(MainFrame mainFrame){
         setVisible(true);
+
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayPanel(new HomePanel());
+            }
+        });
+
         // Log out
         abmeldenButton.addActionListener(new ActionListener() {
             @Override
@@ -27,6 +41,7 @@ public class MainPanel extends JPanel {
                 mainFrame.showLoginPanel();
             }
         });
+
     }
 
     public JPanel getPanel(){
@@ -40,5 +55,23 @@ public class MainPanel extends JPanel {
         this.username = username;
         usernameLabel.setText(username);
     }
+    void displayPanel(JPanel panel) {
 
+        panel.setPreferredSize(new Dimension(1045, 640));
+
+        if (displayedPanel != null) {
+            InnerPanel.remove(displayedPanel);
+            displayedPanel.setVisible(false);
+            displayedPanel = null;
+        }
+        try {
+            InnerPanel.add(panel, BorderLayout.BEFORE_FIRST_LINE);
+            displayedPanel = panel;
+            panel.setVisible(true);
+            this.revalidate();
+            this.repaint();
+        } catch (Exception e) {
+            System.out.println("[ERROR] " + e.toString());
+        }
+    }
 }
