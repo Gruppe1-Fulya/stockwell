@@ -25,7 +25,13 @@
               <focusPainted value="false"/>
               <focusable value="false"/>
               <font name="Segoe UI Semibold" size="16"/>
+              <hideActionText value="false"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <icon value="images/home-button64x64.png"/>
               <text value="HOME"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="3"/>
             </properties>
           </component>
           <component id="21d53" class="javax.swing.JButton" binding="lagerButton">
@@ -36,7 +42,10 @@
               <focusPainted value="false"/>
               <focusable value="false"/>
               <font name="Segoe UI Semibold" size="16"/>
+              <horizontalTextPosition value="0"/>
+              <icon value="images/inventory64x64.png"/>
               <text value="LAGER"/>
+              <verticalTextPosition value="3"/>
             </properties>
           </component>
           <component id="18a30" class="javax.swing.JButton" binding="transaktionenButton">

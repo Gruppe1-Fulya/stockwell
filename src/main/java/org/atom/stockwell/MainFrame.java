@@ -11,9 +11,9 @@ public class MainFrame extends JFrame {
         setTitle("Stockwell");
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1280,720);
-        Dimension minimumSize = new Dimension(1280,720);
-        setMinimumSize(minimumSize);
+        Dimension size = new Dimension(1280,720);
+        setSize(size);
+        setMinimumSize(size);
 
         // loginPanel ve homePaneller class isimleriyken lPanel ve mPanel onlara ait JPaneller.
         loginPanel = new LoginPanel(this);
