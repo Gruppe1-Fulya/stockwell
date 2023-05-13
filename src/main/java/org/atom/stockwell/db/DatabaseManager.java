@@ -1,9 +1,6 @@
 package org.atom.stockwell.db;
 
-import org.atom.stockwell.db.builders.MitarbeiterBuilder;
-import org.atom.stockwell.db.builders.PersonBuilder;
-import org.atom.stockwell.db.builders.ProductBuilder;
-import org.atom.stockwell.db.builders.TransaktionBuilder;
+import org.atom.stockwell.db.builders.*;
 import org.atom.stockwell.db.classes.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -22,12 +19,14 @@ public class DatabaseManager {
     Environment environment;
 
     private JdbcTemplate jdbc;
+    SimpleDateFormat dateFormat;
 
     public DatabaseManager() {
         var dataSource = new SimpleDriverDataSource();
         dataSource.setDriver(new org.sqlite.JDBC());
         dataSource.setUrl("jdbc:sqlite:datas.db");
         jdbc = new JdbcTemplate(dataSource);
+        dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
     }
 
     /*
@@ -99,13 +98,13 @@ public class DatabaseManager {
         List<Product> productList = getProductList();
         List<Mitarbeiter> mitarbeiterList = getMitarbeiterList();
         List<Person> personList = getPersonList();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
 
         TransaktionBuilder transaktionBuilder = new TransaktionBuilder();
 
         return (List<Transaktion>) jdbc.query(sql, (rs, rn) -> {
             try {
                 return transaktionBuilder
+                        .startBuild()
                         .setId(rs.getString("transaktionId"))
                         .setType(rs.getString("type"))
                         .setAmount(rs.getInt("amount"))
@@ -156,18 +155,41 @@ public class DatabaseManager {
         String sql = """
                 select * from lager
                 """;
-        ProductBuilder productBuilder = new ProductBuilder();
-        Lager lager = new Lager();
-        List<Product> products = jdbc.query(sql, (rs, rn) -> productBuilder
-                .startBuild()
-                .setId(rs.getString("id"))
-                .setBarcodeId(rs.getString("barcode"))
-                .setName(rs.getString("name"))
-                .setCategory(rs.getString("category"))
-                .doneBuild());
 
-        for (Product product : products) {
-            lager.addProduct(product);
+        LagerProductBuilder lagerProductBuilder = new LagerProductBuilder();
+
+        List<Product> products = getProductList();
+
+        Lager lager = new Lager();
+
+        List<LagerProduct> lagerProducts = jdbc.query(sql,
+                (rs, rn) -> {
+                    Product product = products.stream()
+                            .filter(p -> {
+                                try {
+                                    return p.getId().equals(rs.getString("productId"));
+                                } catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            })
+                            .findFirst().get();
+
+                    try {
+                        return lagerProductBuilder
+                                .startBuild()
+                                .setId(rs.getString("id"))
+                                .setAmount(rs.getInt("amount"))
+                                .setCost(rs.getInt("cost"))
+                                .setDate(dateFormat.parse(rs.getString("date")))
+                                .setProduct(product)
+                                .doneBuild();
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
+        for (LagerProduct lagerProduct: lagerProducts) {
+            lager.addProduct(lagerProduct);
         }
 
         return lager;
@@ -275,7 +297,7 @@ public class DatabaseManager {
                 transaktion.getProduct().getId(),
                 transaktion.getType(),
                 transaktion.getAmount(),
-                transaktion.getDate(),
+                dateFormat.format(transaktion.getDate()),
                 transaktion.getCost(),
                 transaktion.getKunde().getId(),
                 transaktion.getMitarbeiter().getId());
@@ -392,6 +414,15 @@ public class DatabaseManager {
 
     }
 
+    public boolean updateLager(Lager lager) {
+        /*
+            BURADA VAR OLAN LAGERLER GÜNCELLENİRKEN
+            DİĞERLERİ EKLENİCEK
+         */
+
+        return true;
+    }
+
     /*
         DELETE FUNCTIONS
      */
@@ -414,6 +445,34 @@ public class DatabaseManager {
         String sql = "delete from mitarbeiter " +
                 "where personId = '%s'";
         sql = String.format(sql, mitarbeiter.getId());
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean deleteProduct(Product product) {
+        String sql = "delete from product " +
+                "where id = '%s'";
+        sql = String.format(sql, product.getId());
+
+        try {
+            jdbc.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean deleteTransaktion(Transaktion transaktion) {
+        String sql = "delete from transaktions " +
+                "where transaktionId = '%s'";
+        sql = String.format(sql, transaktion.getId());
 
         try {
             jdbc.execute(sql);

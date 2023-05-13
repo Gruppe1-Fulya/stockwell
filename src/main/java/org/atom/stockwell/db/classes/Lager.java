@@ -3,7 +3,7 @@ package org.atom.stockwell.db.classes;
 import java.util.ArrayList;
 
 public class Lager {
-    private ArrayList<Product> productArrayList;
+    private ArrayList<LagerProduct> productArrayList;
 
     public Lager() {
         productArrayList = new ArrayList<>();
@@ -13,7 +13,8 @@ public class Lager {
         return productArrayList.size();
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(LagerProduct product) {
         productArrayList.add(product);
     }
+    
 }
