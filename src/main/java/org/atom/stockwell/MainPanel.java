@@ -22,15 +22,16 @@ public class MainPanel extends JPanel {
     private JButton kundenButton;
     private String username;
     private JPanel InnerPanel;
-    private JPanel displayedPanel;
 
     public MainPanel(MainFrame mainFrame){
         setVisible(true);
-
+        InnerPanel.setLayout(new CardLayout());
+        InnerPanel.add(new HomePanel(),"home");
+        displayPanel(mainFrame,"home");
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                displayPanel(new HomePanel());
+                displayPanel(mainFrame,"home");
             }
         });
 
@@ -55,23 +56,8 @@ public class MainPanel extends JPanel {
         this.username = username;
         usernameLabel.setText(username);
     }
-    void displayPanel(JPanel panel) {
-
-        panel.setPreferredSize(new Dimension(1045, 640));
-
-        if (displayedPanel != null) {
-            InnerPanel.remove(displayedPanel);
-            displayedPanel.setVisible(false);
-            displayedPanel = null;
-        }
-        try {
-            InnerPanel.add(panel,BorderLayout.BEFORE_FIRST_LINE);
-            displayedPanel = panel;
-            panel.setVisible(true);
-            this.revalidate();
-            this.repaint();
-        } catch (Exception e) {
-            System.out.println("[ERROR] " + e.toString());
-        }
+    void displayPanel(MainFrame mainFrame, String name) {
+        CardLayout cardLayout = (CardLayout) InnerPanel.getLayout();
+        cardLayout.show(InnerPanel,name);
     }
 }
