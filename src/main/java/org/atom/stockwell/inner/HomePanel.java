@@ -5,9 +5,9 @@ import javax.swing.*;
 public class HomePanel extends JPanel {
 
     private JPanel homePanel;
-    private JLabel Title;
+    private JLabel homeLabel;
 
     public HomePanel(){
-
+        add(homePanel);
     }
 }

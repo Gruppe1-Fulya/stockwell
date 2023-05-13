@@ -65,7 +65,7 @@ public class MainPanel extends JPanel {
             displayedPanel = null;
         }
         try {
-            InnerPanel.add(panel, BorderLayout.BEFORE_FIRST_LINE);
+            InnerPanel.add(panel,BorderLayout.BEFORE_FIRST_LINE);
             displayedPanel = panel;
             panel.setVisible(true);
             this.revalidate();
