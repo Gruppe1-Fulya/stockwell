@@ -1,6 +1,8 @@
 package org.atom.stockwell;
 
 import javax.swing.*;
+import java.awt.*;
+
 // Genel olarak programın çalışacağı pencere bu olacak. Gerekli ayarlamalar da buradan yapılacak.
 public class MainFrame extends JFrame {
     private MainPanel mainPanel;
@@ -9,7 +11,9 @@ public class MainFrame extends JFrame {
         setTitle("Stockwell");
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1280,720);
+        Dimension size = new Dimension(1280,720);
+        setSize(size);
+        setMinimumSize(size);
 
         // loginPanel ve homePaneller class isimleriyken lPanel ve mPanel onlara ait JPaneller.
         loginPanel = new LoginPanel(this);

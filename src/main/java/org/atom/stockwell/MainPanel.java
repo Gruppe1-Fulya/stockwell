@@ -1,6 +1,8 @@
 package org.atom.stockwell;
 
+import org.atom.stockwell.db.classes.Lager;
 import org.atom.stockwell.inner.HomePanel;
+import org.atom.stockwell.inner.LagerPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,15 +24,25 @@ public class MainPanel extends JPanel {
     private JButton kundenButton;
     private String username;
     private JPanel InnerPanel;
-    private JPanel displayedPanel;
 
     public MainPanel(MainFrame mainFrame){
         setVisible(true);
-
+        // cardLayout ile cardlari onceden tanimlayip .show(cardName) ile cardlar arasinda gecis yapabiliyoruz
+        InnerPanel.setLayout(new CardLayout());
+        InnerPanel.add(new HomePanel(),"home");
+        InnerPanel.add(new LagerPanel(),"lager");
+        displayPanel(mainFrame,"home");
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                displayPanel(new HomePanel());
+                displayPanel(mainFrame,"home");
+            }
+        });
+
+        lagerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayPanel(mainFrame, "lager");
             }
         });
 
@@ -55,23 +67,9 @@ public class MainPanel extends JPanel {
         this.username = username;
         usernameLabel.setText(username);
     }
-    void displayPanel(JPanel panel) {
-
-        panel.setPreferredSize(new Dimension(1045, 640));
-
-        if (displayedPanel != null) {
-            InnerPanel.remove(displayedPanel);
-            displayedPanel.setVisible(false);
-            displayedPanel = null;
-        }
-        try {
-            InnerPanel.add(panel,BorderLayout.BEFORE_FIRST_LINE);
-            displayedPanel = panel;
-            panel.setVisible(true);
-            this.revalidate();
-            this.repaint();
-        } catch (Exception e) {
-            System.out.println("[ERROR] " + e.toString());
-        }
+    void displayPanel(MainFrame mainFrame, String name) {
+        CardLayout cardLayout = (CardLayout) InnerPanel.getLayout();
+        cardLayout.show(InnerPanel,name);
+        mainFrame.validate();
     }
 }
