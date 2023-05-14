@@ -1,16 +1,12 @@
 package org.atom.stockwell.db;
 
-import org.atom.stockwell.db.builders.MitarbeiterBuilder;
-import org.atom.stockwell.db.builders.PersonBuilder;
-import org.atom.stockwell.db.builders.ProductBuilder;
-import org.atom.stockwell.db.builders.TransaktionBuilder;
-import org.atom.stockwell.db.classes.Mitarbeiter;
-import org.atom.stockwell.db.classes.Person;
-import org.atom.stockwell.db.classes.Product;
+import org.atom.stockwell.db.builders.*;
+import org.atom.stockwell.db.classes.*;
 
-import org.atom.stockwell.db.classes.Transaktion;
 import org.junit.Test;
 import org.junit.Assert;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -20,6 +16,7 @@ import java.util.Date;
     HEM DE NASIL KULLANILDIĞINI GÖSTERMEK İÇİN
  */
 
+@DisplayName("Database Test Module to test All Functions")
 public class DatabaseTester {
 
     @Test
@@ -115,9 +112,9 @@ public class DatabaseTester {
     @Test
     public void createTransaktion() {
 
-        /*
-            Burada test amaçlı satıcı ile alıcı aynı kişi
-         */
+    /*
+        Burada test amaçlı satıcı ile alıcı aynı kişi
+     */
 
         ProductBuilder productBuilder = new ProductBuilder();
 
@@ -194,4 +191,68 @@ public class DatabaseTester {
         db.deletePerson(person);
 
     }
+
+    @Test
+    public void addProductLager() {
+        DatabaseManager db = new DatabaseManager();
+
+        Lager lager = db.getLager();
+
+        // New Product
+        ProductBuilder productBuilder = new ProductBuilder();
+        Product product = productBuilder
+                .startBuild()
+                .setName("TEST_NAME")
+                .setBarcodeId("TEST_BARCODE_ID")
+                .setCategory("TEST_CATEGORY")
+                .doneBuild();
+
+        db.createNewProduct(product);
+
+        Assert.assertSame(
+                true,
+                db.getProductList().stream().anyMatch(p -> p.getId().equals(product.getId()))
+        );
+
+
+        LagerProductBuilder lagerProductBuilder = new LagerProductBuilder();
+        LagerProduct lagerProduct = lagerProductBuilder
+                .startBuild()
+                .setProduct(product)
+                .setAmount(10)
+                .setCost(100)
+                .setDate(new Date())
+                .doneBuild();
+
+        lager.addProduct(lagerProduct);
+
+        db.updateLager(lager);
+
+        Assert.assertSame(
+                true,
+                db.getLager().lagerProducts().stream().anyMatch(lp -> lp.getId().equals(lagerProduct.getId()))
+        );
+
+        lagerProduct.setAmount(101);
+
+        db.updateLager(lager);
+
+        Assert.assertSame(
+                101,
+                db.getLager().lagerProducts().stream().filter(lp -> lp.getId().equals(lagerProduct.getId()))
+                        .findFirst().get().getAmount()
+        );
+
+        lager.removeProduct(lagerProduct);
+
+        db.updateLager(lager);
+
+        Assert.assertSame(
+                false,
+                db.getLager().lagerProducts().stream().anyMatch(lp -> lp.getId().equals(lagerProduct.getId()))
+                );
+
+        db.deleteProduct(product);
+    }
+
 }

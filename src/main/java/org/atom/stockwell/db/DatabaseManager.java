@@ -415,12 +415,94 @@ public class DatabaseManager {
     }
 
     public boolean updateLager(Lager lager) {
-        /*
-            BURADA VAR OLAN LAGERLER GÜNCELLENİRKEN
-            DİĞERLERİ EKLENİCEK
-         */
+
+        Lager sqlager = getLager();
+
+        List<LagerProduct> updateProducts = new ArrayList<>();
+        List<LagerProduct> insertProducts = new ArrayList<>();
+        List<LagerProduct> deleteProducts = new ArrayList<>();
+
+        for (LagerProduct product : lager.lagerProducts()) {
+
+            if (sqlager.lagerProducts()
+                    .stream()
+                    .anyMatch(lp -> lp.getId().equals(product.getId()))) {
+                updateProducts.add(product);
+                continue;
+            }
+            insertProducts.add(product);
+        }
+
+        for (LagerProduct product : sqlager.lagerProducts()) {
+            if (!lager.lagerProducts()
+                    .stream()
+                    .anyMatch(p -> p.getId().equals(product.getId()))) {
+                deleteProducts.add(product);
+            }
+        }
+
+        final String updateSql = "update lager set " +
+                "productId = '%s', " +
+                "date = '%s', " +
+                "amount = '%d', " +
+                "cost = '%d' " +
+                "where id = '%s'";
+
+        final String insertSql = "insert into " +
+                "lager(id, productId, date, amount, cost) " +
+                "values('%s', '%s', '%s', '%d', '%d')";
+
+        final String deleteSql = "delete from lager " +
+                "where id = '%s'";
+
+        for (LagerProduct product: updateProducts) {
+            String sql = String.format(updateSql,
+                    product.getProduct().getId(),
+                    dateFormat.format(product.getDate()),
+                    product.getAmount(),
+                    product.getCost(),
+                    product.getId());
+
+            try {
+                jdbc.execute(sql);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return false;
+            }
+
+        }
+
+        for (LagerProduct product: insertProducts) {
+            String sql = String.format(insertSql,
+                    product.getId(),
+                    product.getProduct().getId(),
+                    dateFormat.format(product.getDate()),
+                    product.getAmount(),
+                    product.getCost()
+            );
+
+            try {
+                jdbc.execute(sql);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return false;
+            }
+        }
+
+        for (LagerProduct product: deleteProducts) {
+            String sql = String.format(deleteSql,
+                    product.getId());
+
+            try {
+                jdbc.execute(sql);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return false;
+            }
+        }
 
         return true;
+
     }
 
     /*

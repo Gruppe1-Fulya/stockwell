@@ -9,7 +9,7 @@ public class LagerProduct {
     private Product product;
     private Date date;
     private int amount;
-    private int cost;
+    private int cost; // per unit
 
     public LagerProduct() {
         id = UUID.randomUUID().toString();
