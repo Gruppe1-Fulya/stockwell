@@ -25,19 +25,30 @@
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-12828606"/>
+        </properties>
         <border type="etched"/>
         <children>
-          <scrollpane id="4e231">
+          <scrollpane id="4e231" binding="scrollPane">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-12827061"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="ba626" class="javax.swing.JTable" binding="lagerTable">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <autoResizeMode value="2"/>
+                  <background color="-10856603"/>
+                  <focusable value="false"/>
+                  <foreground color="-2302756"/>
+                  <gridColor color="-8684677"/>
+                  <rowSelectionAllowed value="false"/>
+                </properties>
               </component>
             </children>
           </scrollpane>

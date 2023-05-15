@@ -14,16 +14,15 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneLightIJ
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlContrastIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
 import org.atom.stockwell.db.*;
+import org.atom.stockwell.db.builders.LagerProductBuilder;
 import org.atom.stockwell.db.builders.TransaktionBuilder;
-import org.atom.stockwell.db.classes.Mitarbeiter;
-import org.atom.stockwell.db.classes.Person;
-import org.atom.stockwell.db.classes.Product;
-import org.atom.stockwell.db.classes.Transaktion;
+import org.atom.stockwell.db.classes.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +66,22 @@ public class Main {
 //                .doneBuild();
 //
 //        db.createNewTransaktion(transaktion);
+
+//        Product product = db.getProductList().stream().findFirst().get();
+//
+//        LagerProductBuilder builder = new LagerProductBuilder();
+//
+//        LagerProduct lagerProduct = builder
+//                .startBuild()
+//                .setProduct(product)
+//                .setId("1231")
+//                .setCost(20)
+//                .setDate(new Date())
+//                .setAmount(12)
+//                .doneBuild();
+//        Lager lager = db.getLager();
+//        lager.addProduct(lagerProduct);
+//        db.updateLager(lager);
 
         try {
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
