@@ -70,10 +70,13 @@ public class LoginPanel extends JPanel{
                                 mitarbeiter.getPassword().equals(password))
         ){
             System.out.println("show Main Panel");
+            // home ile baslamasi icin
+            mainFrame.getMainPanel().getHomeButton().doClick();
             mainFrame.showMainPanel();
             mainFrame.getMainPanel().setUsername(username);
             usernameField.setText("");
             passwordField.setText("");
+
         }else{
             JOptionPane.showMessageDialog(mainFrame,
                     "Sie haben einen ungültigen Benutzername oder Passwort eingegeben.",

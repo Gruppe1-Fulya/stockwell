@@ -5,6 +5,7 @@ import org.atom.stockwell.inner.HomePanel;
 import org.atom.stockwell.inner.LagerPanel;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,13 +36,14 @@ public class MainPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 displayPanel(mainFrame,"home");
+                highlightButton(homeButton);
             }
         });
-
         lagerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 displayPanel(mainFrame, "lager");
+                highlightButton(lagerButton);
             }
         });
 
@@ -50,6 +52,8 @@ public class MainPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.showLoginPanel();
+                //sifirla
+                highlightButton(null);
             }
         });
 
@@ -58,7 +62,9 @@ public class MainPanel extends JPanel {
     public JPanel getPanel(){
         return mPanel;
     }
-
+    public JButton getHomeButton(){
+        return homeButton;
+    }
     public String getUsername(){
         return username;
     }
@@ -70,5 +76,19 @@ public class MainPanel extends JPanel {
         CardLayout cardLayout = (CardLayout) InnerPanel.getLayout();
         cardLayout.show(InnerPanel,name);
         mainFrame.validate();
+    }
+
+    void highlightButton(JButton button){
+        JButton[] buttons = {homeButton,lagerButton,transaktionenButton,kundenButton};
+        for(JButton btn : buttons){
+            if(btn.equals(button)){
+                btn.setBackground(new Color(50, 54, 66));
+                btn.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+            }
+            else{
+                btn.setBackground(null);
+                btn.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+            }
+        }
     }
 }
