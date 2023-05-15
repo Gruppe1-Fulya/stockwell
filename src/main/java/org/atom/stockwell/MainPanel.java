@@ -16,7 +16,6 @@ public class MainPanel extends JPanel {
     private JButton homeButton;
     private JButton lagerButton;
     private JButton transaktionenButton;
-    private JButton ueberunsButton;
     private JButton abmeldenButton;
     private JLabel usernameLabel;
     private JPanel TopPanel;

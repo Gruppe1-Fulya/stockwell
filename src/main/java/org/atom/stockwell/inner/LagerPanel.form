@@ -16,6 +16,7 @@
         </constraints>
         <properties>
           <font name="Droid Sans Mono" size="36"/>
+          <foreground color="-1"/>
           <text value="Lager"/>
         </properties>
       </component>

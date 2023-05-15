@@ -79,6 +79,7 @@ public class LoginPanel extends JPanel{
                     "Sie haben einen ungültigen Benutzername oder Passwort eingegeben.",
                     "Fehler",
                     JOptionPane.ERROR_MESSAGE);
+            passwordField.setText("");
         }
     }
 }
