@@ -44,6 +44,7 @@
                 <properties>
                   <autoResizeMode value="2"/>
                   <background color="-10856603"/>
+                  <enabled value="false"/>
                   <focusable value="false"/>
                   <foreground color="-2302756"/>
                   <gridColor color="-8684677"/>

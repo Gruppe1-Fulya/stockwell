@@ -75,7 +75,7 @@
               <foreground color="-1"/>
               <horizontalTextPosition value="0"/>
               <icon value="images/group64x64.png"/>
-              <text value="KUNDEN"/>
+              <text value="PERSONEN"/>
               <verticalTextPosition value="3"/>
             </properties>
           </component>

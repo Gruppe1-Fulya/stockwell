@@ -34,7 +34,6 @@ public class LagerPanel extends JPanel {
                     lagerProduct.getAmount()*lagerProduct.getCost()};
             tableModel.addRow(rowData);
         }
-
         lagerTable.setModel(tableModel);
 
         // Saga yatik olmasi icin
