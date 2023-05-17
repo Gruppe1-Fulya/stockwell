@@ -1,5 +1,6 @@
 package org.atom.stockwell.inner;
 
+import org.atom.stockwell.Controller;
 import org.atom.stockwell.db.DatabaseManager;
 import org.atom.stockwell.db.classes.Lager;
 import org.atom.stockwell.db.classes.LagerProduct;
@@ -22,19 +23,7 @@ public class LagerPanel extends JPanel {
 
     public LagerPanel(){
         add(lagerPanel);
-        DatabaseManager db = new DatabaseManager();
-        Lager lager = db.getLager();
-        List<LagerProduct> productList =lager.lagerProducts();
-
-        String[] columnNames = {"ID","Name","Datum","Einzelpreis","Menge","Gesamtpreis"};
-        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-
-        for(LagerProduct lagerProduct : productList){
-            Object[] rowData = {lagerProduct.getId(),lagerProduct.getProduct().getName(),lagerProduct.getDate(), lagerProduct.getCost(), lagerProduct.getAmount(),
-                    lagerProduct.getAmount()*lagerProduct.getCost()};
-            tableModel.addRow(rowData);
-        }
-        lagerTable.setModel(tableModel);
+        lagerTable.setModel(Controller.getLagerTable());
 
         // Saga yatik olmasi icin
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();

@@ -63,12 +63,7 @@ public class LoginPanel extends JPanel{
         DatabaseManager db = new DatabaseManager();
         List<Mitarbeiter> mitarbeiterList = db.getMitarbeiterList();
 
-        if(mitarbeiterList
-                .stream()
-                .anyMatch(mitarbeiter ->
-                        mitarbeiter.getUsername().equals(username) &&
-                                mitarbeiter.getPassword().equals(password))
-        ){
+        if(Controller.einLoggen(username, password)){
             System.out.println("show Main Panel");
             // home ile baslamasi icin
             mainFrame.getMainPanel().getHomeButton().doClick();
