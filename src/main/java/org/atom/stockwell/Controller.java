@@ -8,6 +8,8 @@ package org.atom.stockwell;
 import org.atom.stockwell.db.DatabaseManager;
 import org.atom.stockwell.db.classes.Lager;
 import org.atom.stockwell.db.classes.LagerProduct;
+import org.atom.stockwell.db.classes.Mitarbeiter;
+import org.atom.stockwell.db.classes.Transaktion;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
@@ -59,6 +61,69 @@ public class Controller {
                     lagerProduct.getCost(),
                     lagerProduct.getAmount(),
                     lagerProduct.getAmount() * lagerProduct.getCost()
+            };
+            tableModel.addRow(rowData);
+        }
+
+        return tableModel;
+    }
+
+    public static DefaultTableModel getTransaktionenTable(){
+        String[] columnNames = {
+                "ID",
+                "ProduktID",
+                "Typ",
+                "KundenID",
+                "MitarbeiterID",
+                "Datum",
+                "Einzelpreis",
+                "Menge",
+                "Gesamtpreis"
+        };
+
+        DatabaseManager db = new DatabaseManager();
+        List<Transaktion> transaktions = db.getTransaktions();
+
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+
+        for(Transaktion transaktion : transaktions){
+            Object[] rowData = {
+                    transaktion.getId(),
+                    transaktion.getProduct().getId(),
+                    transaktion.getType(),
+                    transaktion.getKunde().getId(),
+                    transaktion.getMitarbeiter().getId(),
+                    transaktion.getDate(),
+                    transaktion.getCost(),
+                    transaktion.getAmount(),
+                    transaktion.getAmount() * transaktion.getCost()
+            };
+            tableModel.addRow(rowData);
+        }
+
+        return tableModel;
+    }
+
+    public static DefaultTableModel getMitarbeiterTable(){
+        String[] columnNames = {
+                "ID",
+                "Name",
+                "Telefonnummer",
+                "E-Mail Adresse",
+                "Abteilung"
+        };
+
+        DatabaseManager db = new DatabaseManager();
+        List<Mitarbeiter> mitarbeiterList = db.getMitarbeiterList();
+
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+
+        for(Mitarbeiter mitarbeiter : mitarbeiterList){
+            Object[] rowData = {
+                    mitarbeiter.getId(),
+                    mitarbeiter.getName(),
+                    mitarbeiter.getPhoneNo(),
+                    mitarbeiter.getEmail()
             };
             tableModel.addRow(rowData);
         }

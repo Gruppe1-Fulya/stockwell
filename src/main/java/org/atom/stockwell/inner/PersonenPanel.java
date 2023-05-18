@@ -1,6 +1,9 @@
 package org.atom.stockwell.inner;
 
+import org.atom.stockwell.Controller;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class PersonenPanel extends JPanel {
     private JPanel personenPanel;
@@ -17,5 +20,16 @@ public class PersonenPanel extends JPanel {
 
     public PersonenPanel(){
         add(personenPanel);
+        mitarbeiterTable.setModel(Controller.getMitarbeiterTable());
+
+        // Saga yatik olmasi icin
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        for (int columnIndex = 0; columnIndex < mitarbeiterTable.getColumnCount(); columnIndex++) {
+            mitarbeiterTable.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
+        }
+
+        mitarbeiterTable.setShowGrid(true);
     }
 }

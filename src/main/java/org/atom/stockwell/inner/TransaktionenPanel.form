@@ -29,7 +29,31 @@
           <background color="-12828606"/>
         </properties>
         <border type="etched"/>
-        <children/>
+        <children>
+          <scrollpane id="6e167" binding="scrollPane">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12827061"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="ea9d" class="javax.swing.JTable" binding="transaktionenTable">
+                <constraints/>
+                <properties>
+                  <autoResizeMode value="2"/>
+                  <background color="-10856603"/>
+                  <enabled value="false"/>
+                  <focusable value="false"/>
+                  <foreground color="-2302756"/>
+                  <gridColor color="-8684677"/>
+                  <rowSelectionAllowed value="false"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
       </grid>
     </children>
   </grid>
