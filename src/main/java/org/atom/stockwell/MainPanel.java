@@ -1,8 +1,9 @@
 package org.atom.stockwell;
 
-import org.atom.stockwell.db.classes.Lager;
 import org.atom.stockwell.inner.HomePanel;
 import org.atom.stockwell.inner.LagerPanel;
+import org.atom.stockwell.inner.PersonenPanel;
+import org.atom.stockwell.inner.TransaktionenPanel;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -21,7 +22,7 @@ public class MainPanel extends JPanel {
     private JLabel usernameLabel;
     private JPanel TopPanel;
     private JLabel ImageLabel;
-    private JButton kundenButton;
+    private JButton personenButton;
     private String username;
     private JPanel InnerPanel;
 
@@ -31,6 +32,9 @@ public class MainPanel extends JPanel {
         InnerPanel.setLayout(new CardLayout());
         InnerPanel.add(new HomePanel(),"home");
         InnerPanel.add(new LagerPanel(),"lager");
+        InnerPanel.add(new TransaktionenPanel(),"transaktionen");
+        InnerPanel.add(new PersonenPanel(),"personen");
+
         displayPanel(mainFrame,"home");
         homeButton.addActionListener(new ActionListener() {
             @Override
@@ -44,6 +48,22 @@ public class MainPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 displayPanel(mainFrame, "lager");
                 highlightButton(lagerButton);
+            }
+        });
+
+        transaktionenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayPanel(mainFrame,"transaktionen");
+                highlightButton(transaktionenButton);
+            }
+        });
+
+        personenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayPanel(mainFrame,"personen");
+                highlightButton(personenButton);
             }
         });
 
@@ -79,7 +99,7 @@ public class MainPanel extends JPanel {
     }
 
     void highlightButton(JButton button){
-        JButton[] buttons = {homeButton,lagerButton,transaktionenButton,kundenButton};
+        JButton[] buttons = {homeButton,lagerButton,transaktionenButton, personenButton};
         for(JButton btn : buttons){
             if(btn.equals(button)){
                 btn.setBackground(new Color(50, 54, 66));
