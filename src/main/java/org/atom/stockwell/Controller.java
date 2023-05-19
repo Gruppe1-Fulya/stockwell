@@ -41,7 +41,7 @@ public class Controller {
                 "Name",
                 "Datum",
                 "Einzelpreis",
-                "Menge",
+                "Anzahl",
                 "Gesamtpreis"
         };
 
@@ -75,7 +75,7 @@ public class Controller {
                 "MitarbeiterID",
                 "Datum",
                 "Einzelpreis",
-                "Menge",
+                "Anzahl",
                 "Gesamtpreis"
         };
 

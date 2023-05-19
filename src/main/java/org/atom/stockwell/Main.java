@@ -82,7 +82,6 @@ public class Main {
 //        Lager lager = db.getLager();
 //        lager.addProduct(lagerProduct);
 //        db.updateLager(lager);
-
         try {
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             FlatArcDarkIJTheme.setup();
