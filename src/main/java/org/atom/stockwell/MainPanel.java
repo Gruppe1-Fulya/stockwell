@@ -32,7 +32,7 @@ public class MainPanel extends JPanel {
         InnerPanel.setLayout(new CardLayout());
         InnerPanel.add(new HomePanel(),"home");
         InnerPanel.add(new LagerPanel(),"lager");
-        InnerPanel.add(new TransaktionenPanel(),"transaktionen");
+        InnerPanel.add(new TransaktionenPanel(mainFrame),"transaktionen");
         InnerPanel.add(new PersonenPanel(),"personen");
 
         displayPanel(mainFrame,"home");

@@ -1,9 +1,13 @@
 package org.atom.stockwell.inner;
 
 import org.atom.stockwell.Controller;
+import org.atom.stockwell.MainFrame;
+import org.atom.stockwell.inner.dialogs.EinkaufDialog;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TransaktionenPanel extends JPanel {
     private JPanel transaktionenPanel;
@@ -11,8 +15,10 @@ public class TransaktionenPanel extends JPanel {
     private JPanel contentPanel;
     private JScrollPane scrollPane;
     private JTable transaktionenTable;
+    private JButton verkaufButton;
+    private JButton einkaufButton;
 
-    public TransaktionenPanel(){
+    public TransaktionenPanel(MainFrame mainFrame){
         add(transaktionenPanel);
         transaktionenTable.setModel(Controller.getTransaktionenTable());
 
@@ -25,5 +31,12 @@ public class TransaktionenPanel extends JPanel {
         }
 
         transaktionenTable.setShowGrid(true);
+
+        einkaufButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EinkaufDialog einkaufDialog = new EinkaufDialog(mainFrame);
+            }
+        });
     }
 }

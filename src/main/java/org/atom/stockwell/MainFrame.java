@@ -9,8 +9,6 @@ public class MainFrame extends JFrame {
     private LoginPanel loginPanel;
     public MainFrame(){
         setTitle("Stockwell");
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension size = new Dimension(1280,720);
         setSize(size);
         setMinimumSize(size);
@@ -23,6 +21,9 @@ public class MainFrame extends JFrame {
         JPanel mPanel = mainPanel.getPanel();
 
         setContentPane(lPanel);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public LoginPanel getLoginPanel(){
