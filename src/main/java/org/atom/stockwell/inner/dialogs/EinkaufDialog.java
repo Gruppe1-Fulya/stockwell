@@ -1,14 +1,19 @@
 package org.atom.stockwell.inner.dialogs;
 
+import org.atom.stockwell.Controller;
 import org.atom.stockwell.MainFrame;
+import org.atom.stockwell.MainPanel;
 import org.atom.stockwell.db.DatabaseManager;
+import org.atom.stockwell.db.builders.LagerProductBuilder;
 import org.atom.stockwell.db.builders.TransaktionBuilder;
 import org.atom.stockwell.db.classes.*;
+import org.atom.stockwell.inner.TransaktionenPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class EinkaufDialog extends JDialog {
@@ -24,7 +29,7 @@ public class EinkaufDialog extends JDialog {
     private JLabel kundenLabel;
     private JComboBox<Person> kundenListBox;
 
-    public EinkaufDialog(MainFrame mainFrame){
+    public EinkaufDialog(MainFrame mainFrame, TransaktionenPanel transaktionenPanel){
         add(einkaufPanel);
         setTitle("Einkauf");
         setAlwaysOnTop(true);
@@ -53,39 +58,55 @@ public class EinkaufDialog extends JDialog {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 Product selectedProduct = (Product) produktListBox.getSelectedItem();
-                Lager lager = db.getLager();
 
                 // getting the user who logged in
                 String username = mainFrame.getMainPanel().getUsername();
-                Mitarbeiter user = new Mitarbeiter();
-                List<Mitarbeiter> mitarbeiterList = db.getMitarbeiterList();
 
-                for(Mitarbeiter mitarbeiter : mitarbeiterList){
-                    if(mitarbeiter.getUsername().equals(username)){
-                        user = mitarbeiter;
-                    }
-                }
-                Person kunde = new Person();
+                Mitarbeiter user = db.getMitarbeiterList()
+                        .stream()
+                        .filter(u -> u.getUsername().equals(username))
+                        .findFirst().get();
+
                 Person selectedKunde = (Person) kundenListBox.getSelectedItem();
 
                 // building a new transaction
-                TransaktionBuilder builder = new TransaktionBuilder();
 
-                Transaktion transaktion = builder
-                        .startBuild()
-                        .setProduct(selectedProduct)
-                        .setAmount(Integer.parseInt(anzahlSpinner.getValue().toString()))
-                        .setCost(Integer.parseInt(einzelSpinner.getValue().toString()))
-                        .setKunde(selectedKunde)
-                        .setMitarbeiter(user)
-                        .setType("EINKAUF")
-                        .setDate(Calendar.getInstance().getTime())
-                        .doneBuild();
+                int amount = Integer.parseInt(anzahlSpinner.getValue().toString());
+                int cost = Integer.parseInt(einzelSpinner.getValue().toString());
+                Date date = Calendar.getInstance().getTime();
 
-                db.createNewTransaktion(transaktion);
-                db.updateLager(lager);
-                dispose();
+                LagerProduct lagerProduct =
+                        new LagerProductBuilder()
+                                .startBuild()
+                                .setProduct(selectedProduct)
+                                .setAmount(amount)
+                                .setCost(cost)
+                                .setDate(date)
+                                .doneBuild();
+
+                Transaktion transaktion =
+                        new TransaktionBuilder()
+                            .startBuild()
+                            .setProduct(selectedProduct)
+                            .setAmount(amount)
+                            .setCost(cost)
+                            .setKunde(selectedKunde)
+                            .setMitarbeiter(user)
+                            .setType("EINKAUF")
+                            .setDate(date)
+                            .doneBuild();
+
+                try {
+                    if (Controller.AddTransaktionDB(transaktion) && Controller.AddProductLagerDB(lagerProduct)) {
+                        dispose();
+                        transaktionenPanel.updateTable();
+                    }
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+
             }
         });
 

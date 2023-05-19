@@ -11,6 +11,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +26,7 @@ public class LagerPanel extends JPanel {
 
     public LagerPanel(){
         add(lagerPanel);
-        lagerTable.setModel(Controller.getLagerTable());
+        updateTable();
 
         // Saga yatik olmasi icin
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
@@ -34,5 +37,16 @@ public class LagerPanel extends JPanel {
         }
 
         lagerTable.setShowGrid(true);
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                updateTable();
+            }
+        });
+    }
+
+    public void updateTable() {
+        lagerTable.setModel(Controller.getLagerTable());
     }
 }
