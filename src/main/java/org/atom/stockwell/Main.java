@@ -15,6 +15,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlContra
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
 import org.atom.stockwell.db.*;
 import org.atom.stockwell.db.builders.LagerProductBuilder;
+import org.atom.stockwell.db.builders.PersonBuilder;
 import org.atom.stockwell.db.builders.TransaktionBuilder;
 import org.atom.stockwell.db.classes.*;
 import org.springframework.boot.CommandLineRunner;
@@ -37,51 +38,6 @@ public class Main {
         var ctx = new SpringApplicationBuilder(Main.class)
                 .headless(false).run(args);
 
-
-        DatabaseManager db = new DatabaseManager();
-
-//        Mitarbeiter caglar = db.getMitarbeiterList().stream()
-//                .filter(person -> person.getName().equals("caglar"))
-//                .findFirst()
-//                .get();
-//
-//        Person burak = db.getPersonList().stream()
-//                .filter(person -> person.getName().equals("burak"))
-//                .findFirst()
-//                .get();
-//
-//        Product product = db.getProductList().stream().findFirst().get();
-//
-//        TransaktionBuilder builder = new TransaktionBuilder();
-//
-//        Transaktion transaktion = builder
-//                .startBuild()
-//                .setProduct(product)
-//                .setAmount(10)
-//                .setCost(1000)
-//                .setKunde(burak)
-//                .setMitarbeiter(caglar)
-//                .setType("SALE")
-//                .setDate(Calendar.getInstance().getTime())
-//                .doneBuild();
-//
-//        db.createNewTransaktion(transaktion);
-
-//        Product product = db.getProductList().stream().findFirst().get();
-//
-//        LagerProductBuilder builder = new LagerProductBuilder();
-//
-//        LagerProduct lagerProduct = builder
-//                .startBuild()
-//                .setProduct(product)
-//                .setId("1231")
-//                .setCost(20)
-//                .setDate(new Date())
-//                .setAmount(12)
-//                .doneBuild();
-//        Lager lager = db.getLager();
-//        lager.addProduct(lagerProduct);
-//        db.updateLager(lager);
         try {
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             FlatArcDarkIJTheme.setup();

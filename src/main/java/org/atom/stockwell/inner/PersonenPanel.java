@@ -21,6 +21,7 @@ public class PersonenPanel extends JPanel {
     public PersonenPanel(){
         add(personenPanel);
         mitarbeiterTable.setModel(Controller.getMitarbeiterTable());
+        kundenTable.setModel(Controller.getKundeTable());
 
         // Saga yatik olmasi icin
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();

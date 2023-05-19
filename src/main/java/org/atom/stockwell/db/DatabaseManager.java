@@ -77,6 +77,21 @@ public class DatabaseManager {
                     ).doneBuild());
     }
 
+    public List<Person> getKundeList() {
+        List<Person> personList = getPersonList();
+        List<Mitarbeiter> mitarbeiterList = getMitarbeiterList();
+        ArrayList<Person> kundeList = new ArrayList<>();
+
+        for (Person p : personList) {
+            if (!mitarbeiterList
+                    .stream()
+                    .anyMatch(m -> m.getId().equals(p.getId())))
+                kundeList.add(p);
+        }
+
+        return kundeList.stream().toList();
+    }
+
     public List<Product> getProductList() {
         String sql = """
                 select * from product

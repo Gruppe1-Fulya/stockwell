@@ -129,6 +129,33 @@ public class Controller {
         return tableModel;
     }
 
+    public static DefaultTableModel getKundeTable(){
+        String[] columnNames = {
+                "ID",
+                "Name",
+                "Telefonnummer",
+                "E-Mail Adresse",
+                "Abteilung"
+        };
+
+        DatabaseManager db = new DatabaseManager();
+        List<Person> kundeList = db.getKundeList();
+
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+
+        for(Person kunde : kundeList){
+            Object[] rowData = {
+                    kunde.getId(),
+                    kunde.getName(),
+                    kunde.getPhoneNo(),
+                    kunde.getEmail()
+            };
+            tableModel.addRow(rowData);
+        }
+
+        return tableModel;
+    }
+
     // AddProductDB Template
     public static boolean AddProductDB(Product product) throws Exception {
         DatabaseManager db = new DatabaseManager();
