@@ -21,6 +21,8 @@ public class EinkaufDialog extends JDialog {
     private JSpinner einzelSpinner;
     private JButton cancelButton;
     private JButton okButton;
+    private JLabel kundenLabel;
+    private JComboBox<Person> kundenListBox;
 
     public EinkaufDialog(MainFrame mainFrame){
         add(einkaufPanel);
@@ -33,13 +35,20 @@ public class EinkaufDialog extends JDialog {
 
         DatabaseManager db = new DatabaseManager();
         List<Product> productList = db.getProductList();
-
-        DefaultComboBoxModel<Product> comboBoxModel = new DefaultComboBoxModel<>();
+        List<Person>  kundenList = db.getKundeList();
+        DefaultComboBoxModel<Product> productBoxModel = new DefaultComboBoxModel<>();
         for (Product product : productList) {
-            comboBoxModel.addElement(product);
+            productBoxModel.addElement(product);
         }
-        produktListBox.setModel(comboBoxModel);
+        DefaultComboBoxModel<Person> kundenBoxModel = new DefaultComboBoxModel<>();
+        for (Person kunde : kundenList) {
+            kundenBoxModel.addElement(kunde);
+        }
+        produktListBox.setModel(productBoxModel);
         produktListBox.setRenderer(new ProductRenderer());
+
+        kundenListBox.setModel(kundenBoxModel);
+        kundenListBox.setRenderer(new KundenRenderer());
 
         okButton.addActionListener(new ActionListener() {
             @Override
@@ -58,13 +67,7 @@ public class EinkaufDialog extends JDialog {
                     }
                 }
                 Person kunde = new Person();
-                List<Person> personList = db.getPersonList();
-
-                for(Person person : personList){
-                    if(person.getName().equals("caglar")){
-                        kunde = person;
-                    }
-                }
+                Person selectedKunde = (Person) kundenListBox.getSelectedItem();
 
                 // building a new transaction
                 TransaktionBuilder builder = new TransaktionBuilder();
@@ -74,7 +77,7 @@ public class EinkaufDialog extends JDialog {
                         .setProduct(selectedProduct)
                         .setAmount(Integer.parseInt(anzahlSpinner.getValue().toString()))
                         .setCost(Integer.parseInt(einzelSpinner.getValue().toString()))
-                        .setKunde(kunde)
+                        .setKunde(selectedKunde)
                         .setMitarbeiter(user)
                         .setType("EINKAUF")
                         .setDate(Calendar.getInstance().getTime())
@@ -102,6 +105,16 @@ public class EinkaufDialog extends JDialog {
             if (value instanceof Product) {
                 Product product = (Product) value;
                 value = product.getName();
+            }
+            return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+        }
+    }
+    private static class KundenRenderer extends DefaultListCellRenderer {
+        @Override
+        public java.awt.Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            if (value instanceof Person) {
+                Person kunde = (Person) value;
+                value = kunde.getName();
             }
             return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
         }
