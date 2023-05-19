@@ -107,7 +107,7 @@ public class Controller {
                 "ID",
                 "Name",
                 "Telefonnummer",
-                "E-Mail Adresse",
+                "E-Mail-Adresse",
                 "Abteilung"
         };
 
@@ -134,7 +134,7 @@ public class Controller {
                 "ID",
                 "Name",
                 "Telefonnummer",
-                "E-Mail Adresse",
+                "E-Mail-Adresse",
                 "Abteilung"
         };
 

@@ -30,7 +30,11 @@ public class PersonenPanel extends JPanel {
         for (int columnIndex = 0; columnIndex < mitarbeiterTable.getColumnCount(); columnIndex++) {
             mitarbeiterTable.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
         }
+        for (int columnIndex = 0; columnIndex < kundenTable.getColumnCount(); columnIndex++) {
+            kundenTable.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
+        }
 
         mitarbeiterTable.setShowGrid(true);
+        kundenTable.setShowGrid(true);
     }
 }
