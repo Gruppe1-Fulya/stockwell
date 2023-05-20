@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="lagerPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="692" height="475"/>
     </constraints>
     <properties>
       <preferredSize width="1024" height="624"/>
@@ -30,29 +30,68 @@
         </properties>
         <border type="etched"/>
         <children>
-          <scrollpane id="4e231" binding="scrollPane">
+          <tabbedpane id="90e45" binding="tabbedPane">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="200" height="200"/>
+              </grid>
             </constraints>
             <properties>
-              <background color="-12827061"/>
+              <focusable value="false"/>
+              <font name="Bahnschrift" size="18"/>
+              <foreground color="-1"/>
+              <tabLayoutPolicy value="0"/>
             </properties>
             <border type="none"/>
             <children>
-              <component id="ba626" class="javax.swing.JTable" binding="lagerTable">
-                <constraints/>
+              <scrollpane id="39bb1" binding="inventarScrollPane">
+                <constraints>
+                  <tabbedpane title="Inventar"/>
+                </constraints>
                 <properties>
-                  <autoResizeMode value="2"/>
-                  <background color="-10856603"/>
-                  <enabled value="false"/>
-                  <focusable value="false"/>
-                  <foreground color="-2302756"/>
-                  <gridColor color="-8684677"/>
-                  <rowSelectionAllowed value="false"/>
+                  <background color="-12827061"/>
                 </properties>
-              </component>
+                <border type="none"/>
+                <children>
+                  <component id="f790" class="javax.swing.JTable">
+                    <constraints/>
+                    <properties>
+                      <autoResizeMode value="2"/>
+                      <background color="-10856603"/>
+                      <enabled value="false"/>
+                      <focusable value="false"/>
+                      <foreground color="-2302756"/>
+                      <gridColor color="-8684677"/>
+                      <rowSelectionAllowed value="false"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+              <scrollpane id="4e231" binding="verlaufScrollPane">
+                <constraints>
+                  <tabbedpane title="Verlauf"/>
+                </constraints>
+                <properties>
+                  <background color="-12827061"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="ba626" class="javax.swing.JTable" binding="lagerTable">
+                    <constraints/>
+                    <properties>
+                      <autoResizeMode value="2"/>
+                      <background color="-10856603"/>
+                      <enabled value="false"/>
+                      <focusable value="false"/>
+                      <foreground color="-2302756"/>
+                      <gridColor color="-8684677"/>
+                      <rowSelectionAllowed value="false"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
             </children>
-          </scrollpane>
+          </tabbedpane>
         </children>
       </grid>
     </children>

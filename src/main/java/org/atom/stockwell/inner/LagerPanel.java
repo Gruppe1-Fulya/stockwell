@@ -1,28 +1,20 @@
 package org.atom.stockwell.inner;
 
 import org.atom.stockwell.Controller;
-import org.atom.stockwell.db.DatabaseManager;
-import org.atom.stockwell.db.classes.Lager;
-import org.atom.stockwell.db.classes.LagerProduct;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
-import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LagerPanel extends JPanel {
     private JPanel lagerPanel;
     private JLabel lagerLabel;
     private JPanel contentPanel;
     private JTable lagerTable;
-    private JScrollPane scrollPane;
+    private JScrollPane verlaufScrollPane;
+    private JTabbedPane tabbedPane;
+    private JScrollPane inventarScrollPane;
 
     public LagerPanel(){
         add(lagerPanel);
