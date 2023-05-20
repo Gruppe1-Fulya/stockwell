@@ -3,6 +3,7 @@ package org.atom.stockwell.inner;
 import org.atom.stockwell.Controller;
 import org.atom.stockwell.MainFrame;
 import org.atom.stockwell.inner.dialogs.EinkaufDialog;
+import org.atom.stockwell.inner.dialogs.VerkaufDialog;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -33,6 +34,13 @@ public class TransaktionenPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 EinkaufDialog einkaufDialog = new EinkaufDialog(mainFrame, realThis);
+            }
+        });
+
+        verkaufButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VerkaufDialog verkaufDialog = new VerkaufDialog(mainFrame,realThis);
             }
         });
 
