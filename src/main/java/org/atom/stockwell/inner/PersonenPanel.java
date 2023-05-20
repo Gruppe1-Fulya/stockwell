@@ -4,6 +4,8 @@ import org.atom.stockwell.Controller;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class PersonenPanel extends JPanel {
     private JPanel personenPanel;
@@ -20,6 +22,16 @@ public class PersonenPanel extends JPanel {
 
     public PersonenPanel(){
         add(personenPanel);
+        updateTables();
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                updateTables();
+            }
+        });
+    }
+
+    public void updateTables(){
         mitarbeiterTable.setModel(Controller.getMitarbeiterTable());
         kundenTable.setModel(Controller.getKundeTable());
 

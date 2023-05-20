@@ -29,16 +29,6 @@ public class TransaktionenPanel extends JPanel {
         add(transaktionenPanel);
         updateTable();
 
-        // Saga yatik olmasi icin
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
-
-        for (int columnIndex = 0; columnIndex < transaktionenTable.getColumnCount(); columnIndex++) {
-            transaktionenTable.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
-        }
-
-        transaktionenTable.setShowGrid(true);
-
         einkaufButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,6 +48,16 @@ public class TransaktionenPanel extends JPanel {
 
     public void updateTable() {
         transaktionenTable.setModel(Controller.getTransaktionenTable());
+
+        // Saga yatik olmasi icin
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        for (int columnIndex = 0; columnIndex < transaktionenTable.getColumnCount(); columnIndex++) {
+            transaktionenTable.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
+        }
+
+        transaktionenTable.setShowGrid(true);
     }
 
 }

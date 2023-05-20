@@ -10,8 +10,11 @@ import org.atom.stockwell.db.classes.*;
 import org.atom.stockwell.inner.TransaktionenPanel;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -76,37 +79,36 @@ public class EinkaufDialog extends JDialog {
                 int amount = Integer.parseInt(anzahlSpinner.getValue().toString());
                 int cost = Integer.parseInt(einzelSpinner.getValue().toString());
                 Date date = Calendar.getInstance().getTime();
+                if(amount != 0) {
+                    LagerProduct lagerProduct =
+                            new LagerProductBuilder()
+                                    .startBuild()
+                                    .setProduct(selectedProduct)
+                                    .setAmount(amount)
+                                    .setCost(cost)
+                                    .setDate(date)
+                                    .doneBuild();
 
-                LagerProduct lagerProduct =
-                        new LagerProductBuilder()
-                                .startBuild()
-                                .setProduct(selectedProduct)
-                                .setAmount(amount)
-                                .setCost(cost)
-                                .setDate(date)
-                                .doneBuild();
-
-                Transaktion transaktion =
-                        new TransaktionBuilder()
-                            .startBuild()
-                            .setProduct(selectedProduct)
-                            .setAmount(amount)
-                            .setCost(cost)
-                            .setKunde(selectedKunde)
-                            .setMitarbeiter(user)
-                            .setType("EINKAUF")
-                            .setDate(date)
-                            .doneBuild();
-
-                try {
-                    if (Controller.AddTransaktionDB(transaktion) && Controller.AddProductLagerDB(lagerProduct)) {
-                        dispose();
-                        transaktionenPanel.updateTable();
+                    Transaktion transaktion =
+                            new TransaktionBuilder()
+                                    .startBuild()
+                                    .setProduct(selectedProduct)
+                                    .setAmount(amount)
+                                    .setCost(cost)
+                                    .setKunde(selectedKunde)
+                                    .setMitarbeiter(user)
+                                    .setType("EINKAUF")
+                                    .setDate(date)
+                                    .doneBuild();
+                    try {
+                        if (Controller.AddTransaktionDB(transaktion) && Controller.AddProductLagerDB(lagerProduct)) {
+                            transaktionenPanel.updateTable();
+                        }
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
                     }
-                } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
                 }
-
+                dispose();
             }
         });
 

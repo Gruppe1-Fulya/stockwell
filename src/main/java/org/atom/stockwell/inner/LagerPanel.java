@@ -27,17 +27,6 @@ public class LagerPanel extends JPanel {
     public LagerPanel(){
         add(lagerPanel);
         updateTable();
-
-        // Saga yatik olmasi icin
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
-
-        for (int columnIndex = 0; columnIndex < lagerTable.getColumnCount(); columnIndex++) {
-            lagerTable.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
-        }
-
-        lagerTable.setShowGrid(true);
-
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
@@ -48,5 +37,15 @@ public class LagerPanel extends JPanel {
 
     public void updateTable() {
         lagerTable.setModel(Controller.getLagerTable());
+        // Saga yatik olmasi icin
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        for (int columnIndex = 0; columnIndex < lagerTable.getColumnCount(); columnIndex++) {
+            lagerTable.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
+        }
+
+        lagerTable.setShowGrid(true);
+
     }
 }

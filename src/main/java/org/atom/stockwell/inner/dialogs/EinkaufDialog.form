@@ -13,7 +13,7 @@
           <grid row="2" column="4" row-span="2" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <focusable value="false"/>
+          <focusable value="true"/>
           <model/>
         </properties>
       </component>
@@ -49,7 +49,9 @@
           <grid row="5" column="4" row-span="2" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <focusable value="false"/>
+          <focusCycleRoot value="false"/>
+          <focusable value="true"/>
+          <verifyInputWhenFocusTarget value="true"/>
         </properties>
       </component>
       <component id="1620d" class="javax.swing.JSpinner" binding="einzelSpinner">
@@ -57,7 +59,9 @@
           <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <focusable value="false"/>
+          <focusCycleRoot value="false"/>
+          <focusable value="true"/>
+          <verifyInputWhenFocusTarget value="true"/>
         </properties>
       </component>
       <component id="2c0b1" class="javax.swing.JButton" binding="cancelButton">
@@ -65,7 +69,8 @@
           <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <focusable value="false"/>
+          <focusPainted value="false"/>
+          <focusable value="true"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <text value="Abbrechen"/>
         </properties>
@@ -75,7 +80,8 @@
           <grid row="7" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <focusable value="false"/>
+          <focusPainted value="false"/>
+          <focusable value="true"/>
           <font name="Yu Gothic UI Semibold" size="14"/>
           <text value="OK"/>
         </properties>
@@ -94,7 +100,7 @@
           <grid row="0" column="4" row-span="2" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <focusable value="false"/>
+          <focusable value="true"/>
           <model/>
         </properties>
       </component>
