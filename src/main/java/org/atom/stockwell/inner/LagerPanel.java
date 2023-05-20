@@ -12,7 +12,9 @@ public class LagerPanel extends JPanel {
     private JLabel lagerLabel;
     private JPanel contentPanel;
     private JTable lagerTable;
-    private JScrollPane scrollPane;
+    private JScrollPane verlaufScrollPane;
+    private JTabbedPane tabbedPane;
+    private JScrollPane inventarScrollPane;
 
     public LagerPanel(){
         add(lagerPanel);
