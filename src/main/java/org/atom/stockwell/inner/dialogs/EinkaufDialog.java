@@ -12,6 +12,7 @@ import org.atom.stockwell.inner.TransaktionenPanel;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -54,10 +55,11 @@ public class EinkaufDialog extends JDialog {
         }
         produktListBox.setModel(productBoxModel);
         produktListBox.setRenderer(new ProductRenderer());
+        produktListBox.setSelectedIndex(-1);
 
         kundenListBox.setModel(kundenBoxModel);
         kundenListBox.setRenderer(new KundenRenderer());
-
+        kundenListBox.setSelectedIndex(-1);
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,7 +81,7 @@ public class EinkaufDialog extends JDialog {
                 int amount = Integer.parseInt(anzahlSpinner.getValue().toString());
                 int cost = Integer.parseInt(einzelSpinner.getValue().toString());
                 Date date = Calendar.getInstance().getTime();
-                if(amount != 0) {
+                if(amount != 0 && selectedKunde != null && selectedProduct != null && !selectedKunde.getName().equals("----") && !selectedProduct.getName().equals("----")) {
                     LagerProduct lagerProduct =
                             new LagerProductBuilder()
                                     .startBuild()
@@ -123,21 +125,31 @@ public class EinkaufDialog extends JDialog {
     }
 
     private static class ProductRenderer extends DefaultListCellRenderer {
+        private final String placeholder = "----";
         @Override
         public java.awt.Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-            if (value instanceof Product) {
+            if (value == null) {
+                value = placeholder;
+                setForeground(Color.GRAY);
+            } else if (value instanceof Product) {
                 Product product = (Product) value;
                 value = product.getName();
+                setForeground(list.getForeground());
             }
             return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
         }
     }
     private static class KundenRenderer extends DefaultListCellRenderer {
+        private final String placeholder = "----";
         @Override
         public java.awt.Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-            if (value instanceof Person) {
+            if (value == null) {
+                value = placeholder;
+                setForeground(Color.GRAY);
+            } else if (value instanceof Person) {
                 Person kunde = (Person) value;
                 value = kunde.getName();
+                setForeground(list.getForeground());
             }
             return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
         }
