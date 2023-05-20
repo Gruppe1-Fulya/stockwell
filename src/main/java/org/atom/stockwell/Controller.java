@@ -9,7 +9,7 @@ import org.atom.stockwell.db.DatabaseManager;
 import org.atom.stockwell.db.classes.*;
 
 import javax.swing.table.DefaultTableModel;
-import javax.xml.crypto.Data;
+import java.util.HashMap;
 import java.util.List;
 
 public class Controller {
@@ -34,31 +34,66 @@ public class Controller {
     }
 
     // Lager Display Controller
-    public static DefaultTableModel getLagerTable() {
+    public static DefaultTableModel getVerlaufTable() {
         
         String[] columnNames = {
-                "ID",
+                "TransaktionID",
+                "ProduktID",
                 "Name",
                 "Datum",
-                "Einzelpreis",
-                "Anzahl",
-                "Gesamtpreis"
+                "Anzahl"
         };
 
         DatabaseManager db = new DatabaseManager();
-        Lager lager = db.getLager();
-        List<LagerProduct> productList =lager.lagerProducts();
+
+        List<Transaktion> transaktionList = db.getTransaktions();
 
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
-        for(LagerProduct lagerProduct : productList){
+        for (Transaktion transaktion: transaktionList) {
             Object[] rowData = {
-                    lagerProduct.getId(),
-                    lagerProduct.getProduct().getName(),
-                    lagerProduct.getDate(),
-                    lagerProduct.getCost(),
-                    lagerProduct.getAmount(),
-                    lagerProduct.getAmount() * lagerProduct.getCost()
+                    transaktion.getId(),
+                    transaktion.getProduct().getId(),
+                    transaktion.getProduct().getName(),
+                    transaktion.getDate(),
+                    (transaktion.getType().equals("EINKAUF") ? "+" : "-") + transaktion.getAmount()
+            };
+            tableModel.addRow(rowData);
+        }
+
+        return tableModel;
+    }
+
+    public static DefaultTableModel getInventarTable() {
+        String[] columnNames = {
+                "ID",
+                "Name",
+                "Barcode",
+                "Kategorie",
+                "Anzahl"
+        };
+
+        DatabaseManager db = new DatabaseManager();
+
+        HashMap<Product, Integer> productMap = new HashMap<>();
+
+        for (Product product : db.getProductList())
+            productMap.put(product, 0);
+
+        for (LagerProduct lagerProduct : db.getLager().lagerProducts())
+            productMap.put(lagerProduct.getProduct(), lagerProduct.getAmount() + productMap.get(lagerProduct.getProduct()));
+
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+
+        for (Product product: productMap.keySet()) {
+            int amount = productMap.get(product);
+
+            Object[] rowData = {
+                    product.getId(),
+                    product.getName(),
+                    product.getBarcodeId(),
+                    product.getCategory(),
+                    amount
             };
             tableModel.addRow(rowData);
         }

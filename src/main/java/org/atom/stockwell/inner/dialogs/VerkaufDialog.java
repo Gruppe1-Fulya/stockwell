@@ -88,7 +88,7 @@ public class VerkaufDialog extends JDialog {
                             new LagerProductBuilder()
                                     .startBuild()
                                     .setProduct(selectedProduct)
-                                    .setAmount(amount)
+                                    .setAmount(-amount)
                                     .setCost(cost)
                                     .setDate(date)
                                     .doneBuild();

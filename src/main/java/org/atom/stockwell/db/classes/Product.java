@@ -1,5 +1,6 @@
 package org.atom.stockwell.db.classes;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Product {
@@ -42,5 +43,17 @@ public class Product {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object e) {
+        if (e == null || e.getClass() != getClass())
+            return false;
+        return ((Product) e).getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }
