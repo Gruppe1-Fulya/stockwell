@@ -38,7 +38,8 @@ public class EinkaufDialog extends JDialog {
         setTitle("Einkauf");
         setAlwaysOnTop(true);
         setModal(true);
-        setSize(300,200);
+        setSize(300,230);
+        setResizable(false);
         setLocationRelativeTo(mainFrame);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
@@ -60,6 +61,11 @@ public class EinkaufDialog extends JDialog {
         kundenListBox.setModel(kundenBoxModel);
         kundenListBox.setRenderer(new KundenRenderer());
         kundenListBox.setSelectedIndex(-1);
+
+        // setting min and max values for spinners
+        einzelSpinner.setModel(new SpinnerNumberModel(0,0,999999999,1));
+        anzahlSpinner.setModel(new SpinnerNumberModel(0,0,999999999,1));
+
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
