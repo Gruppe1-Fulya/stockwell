@@ -23,22 +23,25 @@ public class LagerPanel extends JPanel {
     private JTable inventarTable;
     private JButton loeschenButton;
     private JButton hinzufuegenButton;
+    private LagerPanel realThis;
 
     public LagerPanel(MainFrame mainFrame){
+
+        realThis = this;
         add(lagerPanel);
         updateTables();
 
         hinzufuegenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                HinzufuegenDialog hinzufuegenDialog = new HinzufuegenDialog(mainFrame);
+                HinzufuegenDialog hinzufuegenDialog = new HinzufuegenDialog(mainFrame,realThis);
 
             }
         });
         loeschenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LoeschenDialog loeschenDialog = new LoeschenDialog(mainFrame);
+                LoeschenDialog loeschenDialog = new LoeschenDialog(mainFrame,realThis);
             }
         });
 

@@ -130,7 +130,7 @@ public class EinkaufDialog extends JDialog {
         setVisible(true);
     }
 
-    private static class ProductRenderer extends DefaultListCellRenderer {
+    public static class ProductRenderer extends DefaultListCellRenderer {
         private final String placeholder = "----";
         @Override
         public java.awt.Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
