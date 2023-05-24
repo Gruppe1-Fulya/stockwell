@@ -31,7 +31,7 @@ public class MainPanel extends JPanel {
         // cardLayout ile cardlari onceden tanimlayip .show(cardName) ile cardlar arasinda gecis yapabiliyoruz
         InnerPanel.setLayout(new CardLayout());
         InnerPanel.add(new HomePanel(),"home");
-        InnerPanel.add(new LagerPanel(),"lager");
+        InnerPanel.add(new LagerPanel(mainFrame),"lager");
         InnerPanel.add(new TransaktionenPanel(mainFrame),"transaktionen");
         InnerPanel.add(new PersonenPanel(),"personen");
 
