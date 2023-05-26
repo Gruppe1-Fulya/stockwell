@@ -10,18 +10,22 @@ import org.atom.stockwell.db.classes.*;
 import org.atom.stockwell.inner.LagerPanel;
 import org.atom.stockwell.inner.PersonenPanel;
 import org.atom.stockwell.inner.TransaktionenPanel;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 public class Controller {
 
+    static String pattern = "dd-MM-yyyy HH:mm:ss";
+    static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
     // LoginController
     static boolean checkIfUserExits(String username) {
         DatabaseManager db = new DatabaseManager();
@@ -58,11 +62,8 @@ public class Controller {
 
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
-        Locale loc = new Locale.Builder().setLanguage("de").setRegion("DE").build();
-        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, loc);
-
         for (Transaktion transaktion: transaktionList) {
-            String dateString = dateFormat.format(transaktion.getDate());
+            String dateString = simpleDateFormat.format(transaktion.getDate());
             Object[] rowData = {
                     transaktion.getId(),
                     transaktion.getProduct().getId(),
@@ -147,11 +148,8 @@ public class Controller {
         List<Transaktion> transaktions = db.getTransaktions();
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
-        Locale loc = new Locale.Builder().setLanguage("de").setRegion("DE").build();
-        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, loc);
-
         for(Transaktion transaktion : transaktions){
-            String dateString = dateFormat.format(transaktion.getDate());
+            String dateString = simpleDateFormat.format(transaktion.getDate());
             Object[] rowData = {
                     transaktion.getId(),
                     transaktion.getProduct().getId(),

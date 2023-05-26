@@ -10,6 +10,7 @@ import org.atom.stockwell.inner.LagerPanel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.NoSuchElementException;
 
 public class HinzufuegenDialog extends JDialog {
 
