@@ -7,7 +7,13 @@ package org.atom.stockwell;
 
 import org.atom.stockwell.db.DatabaseManager;
 import org.atom.stockwell.db.classes.*;
+import org.atom.stockwell.inner.LagerPanel;
+import org.atom.stockwell.inner.PersonenPanel;
+import org.atom.stockwell.inner.TransaktionenPanel;
 
+import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +40,7 @@ public class Controller {
     }
 
     // Lager Display Controller
-    public static DefaultTableModel getVerlaufTable() {
+    public static DefaultTableModel getVerlaufTable(LagerPanel lagerPanel) {
         
         String[] columnNames = {
                 "TransaktionID",
@@ -61,10 +67,19 @@ public class Controller {
             tableModel.addRow(rowData);
         }
 
+        tableModel.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                if (e.getType() == TableModelEvent.UPDATE && e.getColumn() != TableModelEvent.ALL_COLUMNS) {
+                    lagerPanel.updateTables();
+                }
+            }
+        });
+
         return tableModel;
     }
 
-    public static DefaultTableModel getInventarTable() {
+    public static DefaultTableModel getInventarTable(LagerPanel lagerPanel) {
         String[] columnNames = {
                 "ID",
                 "Name",
@@ -97,11 +112,19 @@ public class Controller {
             };
             tableModel.addRow(rowData);
         }
+        tableModel.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                if (e.getType() == TableModelEvent.UPDATE && e.getColumn() != TableModelEvent.ALL_COLUMNS) {
+                    lagerPanel.updateTables();
+                }
+            }
+        });
 
         return tableModel;
     }
 
-    public static DefaultTableModel getTransaktionenTable(){
+    public static DefaultTableModel getTransaktionenTable(TransaktionenPanel transaktionenPanel){
         String[] columnNames = {
                 "ID",
                 "ProduktID",
@@ -134,10 +157,19 @@ public class Controller {
             tableModel.addRow(rowData);
         }
 
+        tableModel.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                if (e.getType() == TableModelEvent.UPDATE && e.getColumn() != TableModelEvent.ALL_COLUMNS) {
+                    transaktionenPanel.updateTable();
+                }
+            }
+        });
+
         return tableModel;
     }
 
-    public static DefaultTableModel getMitarbeiterTable(){
+    public static DefaultTableModel getMitarbeiterTable(PersonenPanel personenPanel){
         String[] columnNames = {
                 "ID",
                 "Name",
@@ -161,10 +193,19 @@ public class Controller {
             tableModel.addRow(rowData);
         }
 
+        tableModel.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                if (e.getType() == TableModelEvent.UPDATE && e.getColumn() != TableModelEvent.ALL_COLUMNS) {
+                    personenPanel.updateTables();
+                }
+            }
+        });
+
         return tableModel;
     }
 
-    public static DefaultTableModel getKundeTable(){
+    public static DefaultTableModel getKundeTable(PersonenPanel personenPanel){
         String[] columnNames = {
                 "ID",
                 "Name",
@@ -187,6 +228,14 @@ public class Controller {
             };
             tableModel.addRow(rowData);
         }
+        tableModel.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                if (e.getType() == TableModelEvent.UPDATE && e.getColumn() != TableModelEvent.ALL_COLUMNS) {
+                    personenPanel.updateTables();
+                }
+            }
+        });
 
         return tableModel;
     }

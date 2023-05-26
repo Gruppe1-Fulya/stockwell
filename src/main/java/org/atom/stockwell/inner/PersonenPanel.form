@@ -52,11 +52,12 @@
                     <properties>
                       <autoResizeMode value="2"/>
                       <background color="-10856603"/>
-                      <enabled value="false"/>
+                      <cellSelectionEnabled value="true"/>
+                      <enabled value="true"/>
                       <focusable value="false"/>
                       <foreground color="-2302756"/>
                       <gridColor color="-8684677"/>
-                      <rowSelectionAllowed value="false"/>
+                      <rowSelectionAllowed value="true"/>
                     </properties>
                   </component>
                 </children>
@@ -97,11 +98,12 @@
                 <properties>
                   <autoResizeMode value="2"/>
                   <background color="-10856603"/>
-                  <enabled value="false"/>
+                  <cellSelectionEnabled value="true"/>
+                  <enabled value="true"/>
                   <focusable value="false"/>
                   <foreground color="-2302756"/>
                   <gridColor color="-8684677"/>
-                  <rowSelectionAllowed value="false"/>
+                  <rowSelectionAllowed value="true"/>
                 </properties>
               </component>
             </children>

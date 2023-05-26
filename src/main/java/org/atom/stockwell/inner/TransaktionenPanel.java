@@ -7,6 +7,7 @@ import org.atom.stockwell.inner.dialogs.VerkaufDialog;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -51,14 +52,19 @@ public class TransaktionenPanel extends JPanel {
                 updateTable();
             }
         });
-
     }
 
     public void updateTable() {
-        transaktionenTable.setModel(Controller.getTransaktionenTable());
+        transaktionenTable.setModel(Controller.getTransaktionenTable(this));
 
         // Saga yatik olmasi icin
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, false, false, row, column);
+                return c;
+            }
+        };
         rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
 
         for (int columnIndex = 0; columnIndex < transaktionenTable.getColumnCount(); columnIndex++) {

@@ -4,6 +4,7 @@ import org.atom.stockwell.Controller;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -32,11 +33,17 @@ public class PersonenPanel extends JPanel {
     }
 
     public void updateTables(){
-        mitarbeiterTable.setModel(Controller.getMitarbeiterTable());
-        kundenTable.setModel(Controller.getKundeTable());
+        mitarbeiterTable.setModel(Controller.getMitarbeiterTable(this));
+        kundenTable.setModel(Controller.getKundeTable(this));
 
         // Saga yatik olmasi icin
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, false, false, row, column);
+                return c;
+            }
+        };
         rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
 
         for (int columnIndex = 0; columnIndex < mitarbeiterTable.getColumnCount(); columnIndex++) {
