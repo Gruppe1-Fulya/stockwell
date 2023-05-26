@@ -15,8 +15,10 @@ import javax.swing.*;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import java.text.DateFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class Controller {
 
@@ -56,12 +58,16 @@ public class Controller {
 
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
+        Locale loc = new Locale.Builder().setLanguage("de").setRegion("DE").build();
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, loc);
+
         for (Transaktion transaktion: transaktionList) {
+            String dateString = dateFormat.format(transaktion.getDate());
             Object[] rowData = {
                     transaktion.getId(),
                     transaktion.getProduct().getId(),
                     transaktion.getProduct().getName(),
-                    transaktion.getDate(),
+                    dateString,
                     (transaktion.getType().equals("EINKAUF") ? "+" : "-") + transaktion.getAmount()
             };
             tableModel.addRow(rowData);
@@ -139,17 +145,20 @@ public class Controller {
 
         DatabaseManager db = new DatabaseManager();
         List<Transaktion> transaktions = db.getTransaktions();
-
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
+        Locale loc = new Locale.Builder().setLanguage("de").setRegion("DE").build();
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, loc);
+
         for(Transaktion transaktion : transaktions){
+            String dateString = dateFormat.format(transaktion.getDate());
             Object[] rowData = {
                     transaktion.getId(),
                     transaktion.getProduct().getId(),
                     transaktion.getType(),
                     transaktion.getKunde().getName(),
                     transaktion.getMitarbeiter().getName(),
-                    transaktion.getDate(),
+                    dateString,
                     transaktion.getCost(),
                     transaktion.getAmount(),
                     transaktion.getAmount() * transaktion.getCost()
