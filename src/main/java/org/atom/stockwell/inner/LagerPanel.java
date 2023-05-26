@@ -67,7 +67,8 @@ public class LagerPanel extends JPanel {
         for (int columnIndex = 0; columnIndex < verlaufTable.getColumnCount(); columnIndex++) {
             verlaufTable.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
         }
-
+        inventarTable.getTableHeader().setResizingAllowed(false);
+        verlaufTable.getTableHeader().setResizingAllowed(false);
         verlaufTable.setShowGrid(true);
         inventarTable.setShowGrid(true);
 

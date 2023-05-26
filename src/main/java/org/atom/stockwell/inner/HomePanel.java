@@ -9,6 +9,8 @@ public class HomePanel extends JPanel {
     private JPanel salesGraph;
     private JPanel latestTransactions;
     private JPanel latestProduct;
+    private JLabel transaktionLabel;
+    private JLabel letztesProduktLabel;
 
     public HomePanel(){
         add(homePanel);

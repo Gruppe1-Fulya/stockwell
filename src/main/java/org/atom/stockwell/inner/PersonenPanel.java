@@ -9,7 +9,7 @@ import java.awt.event.ComponentEvent;
 
 public class PersonenPanel extends JPanel {
     private JPanel personenPanel;
-    private JLabel PersonenLabel;
+    private JLabel personenLabel;
     private JPanel contentPanel;
     private JPanel kundenPanel;
     private JPanel mitarbeiterPanel;
@@ -46,6 +46,8 @@ public class PersonenPanel extends JPanel {
             kundenTable.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
         }
 
+        mitarbeiterTable.getTableHeader().setResizingAllowed(false);
+        kundenTable.getTableHeader().setResizingAllowed(false);
         mitarbeiterTable.setShowGrid(true);
         kundenTable.setShowGrid(true);
     }

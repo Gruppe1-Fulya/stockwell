@@ -65,6 +65,7 @@ public class TransaktionenPanel extends JPanel {
             transaktionenTable.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
         }
 
+        transaktionenTable.getTableHeader().setResizingAllowed(false);
         transaktionenTable.setShowGrid(true);
     }
 
