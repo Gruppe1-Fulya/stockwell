@@ -9,6 +9,8 @@ public class Product {
     private String name;
     private String category;
 
+    private boolean active;
+
     public Product() {
         id = UUID.randomUUID().toString();
     }
@@ -55,5 +57,13 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

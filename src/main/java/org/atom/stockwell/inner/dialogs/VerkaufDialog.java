@@ -40,7 +40,7 @@ public class VerkaufDialog extends JDialog {
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         DatabaseManager db = new DatabaseManager();
-        List<Product> productList = db.getProductList();
+        List<Product> productList = Controller.GetProductList();
         List<Person>  kundenList = db.getKundeList();
         DefaultComboBoxModel<Product> productBoxModel = new DefaultComboBoxModel<>();
         for (Product product : productList) {

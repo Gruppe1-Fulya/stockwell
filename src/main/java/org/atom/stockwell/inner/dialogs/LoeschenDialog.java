@@ -1,5 +1,6 @@
 package org.atom.stockwell.inner.dialogs;
 
+import org.atom.stockwell.Controller;
 import org.atom.stockwell.MainFrame;
 import org.atom.stockwell.db.DatabaseManager;
 import org.atom.stockwell.db.classes.Product;
@@ -30,7 +31,7 @@ public class LoeschenDialog extends JDialog {
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         DatabaseManager db = new DatabaseManager();
-        List<Product> productList = db.getProductList();
+        List<Product> productList = Controller.GetProductList();
 
         DefaultComboBoxModel<Product> productBoxModel = new DefaultComboBoxModel<>();
         for (Product product : productList) {
@@ -46,10 +47,12 @@ public class LoeschenDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Product selectedProduct = (Product) produktListBox.getSelectedItem();
-                if(selectedProduct!=null){
-                    db.deleteProduct(selectedProduct);
+                try {
+                    if(Controller.DisposeProductDB(selectedProduct))
+                        lagerPanel.updateTables();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
                 }
-                lagerPanel.updateTables();
                 dispose();
 
             }

@@ -99,7 +99,7 @@ public class Controller {
 
         HashMap<Product, Integer> productMap = new HashMap<>();
 
-        for (Product product : db.getProductList())
+        for (Product product : GetProductList())
             productMap.put(product, 0);
 
         for (LagerProduct lagerProduct : db.getLager().lagerProducts())
@@ -248,6 +248,15 @@ public class Controller {
     }
 
     // AddProductDB Template
+
+    public static List<Product> GetProductList() {
+        DatabaseManager db = new DatabaseManager();
+        return db.getProductList()
+                .stream()
+                .filter(Product::isActive)
+                .toList();
+    }
+
     public static boolean AddProductDB(Product product) throws Exception {
         DatabaseManager db = new DatabaseManager();
 
@@ -258,6 +267,19 @@ public class Controller {
             throw new Exception("[SW] PRODUCT ALREADY EXITS");
 
         return db.createNewProduct(product);
+    }
+
+    public static boolean DisposeProductDB(Product product) throws Exception {
+        DatabaseManager db = new DatabaseManager();
+
+        // check if Product in db exits
+        if (db.getProductList()
+                .stream()
+                .noneMatch(p -> p.getId().equals(product.getId())))
+            throw new Exception("[SW] PRODUCT ALREADY EXITS");
+
+        product.setActive(false);
+        return db.updateProduct(product);
     }
 
     public static boolean AddProductLagerDB(LagerProduct product) throws Exception {

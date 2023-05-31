@@ -31,6 +31,11 @@ public class ProductBuilder {
         return this;
     }
 
+    public ProductBuilder setActive(boolean active) {
+        currentProduct.setActive(active);
+        return this;
+    }
+
     public Product doneBuild() {
         return currentProduct;
     }

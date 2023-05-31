@@ -27,7 +27,10 @@ public class Lager {
     }
 
     public List<LagerProduct> lagerProducts() {
-        return productArrayList;
+        return productArrayList
+                .stream()
+                .filter(p -> p.getProduct().isActive())
+                .toList();
     }
 
 
