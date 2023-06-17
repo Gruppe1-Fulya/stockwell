@@ -1,11 +1,9 @@
 package org.atom.stockwell;
 
-import org.atom.stockwell.db.DatabaseManager;
-import org.atom.stockwell.db.classes.Mitarbeiter;
+import org.atom.stockwell.controllers.Controller;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.List;
 
 public class LoginPanel extends JPanel{
 
@@ -58,10 +56,6 @@ public class LoginPanel extends JPanel{
     public void login(MainFrame mainFrame){
         String username = usernameField.getText();
         String password = new String(passwordField.getPassword()); // passwordlar char[] olarak aliniyor
-
-
-        DatabaseManager db = new DatabaseManager();
-        List<Mitarbeiter> mitarbeiterList = db.getMitarbeiterList();
 
         if(Controller.einLoggen(username, password)){
             System.out.println("show Main Panel");

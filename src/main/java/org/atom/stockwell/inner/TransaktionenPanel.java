@@ -1,6 +1,6 @@
 package org.atom.stockwell.inner;
 
-import org.atom.stockwell.Controller;
+import org.atom.stockwell.controllers.Controller;
 import org.atom.stockwell.MainFrame;
 import org.atom.stockwell.inner.dialogs.EinkaufDialog;
 import org.atom.stockwell.inner.dialogs.VerkaufDialog;

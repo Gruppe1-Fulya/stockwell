@@ -1,8 +1,7 @@
 package org.atom.stockwell.inner.dialogs;
 
-import org.atom.stockwell.Controller;
+import org.atom.stockwell.controllers.Controller;
 import org.atom.stockwell.MainFrame;
-import org.atom.stockwell.db.DatabaseManager;
 import org.atom.stockwell.db.builders.ProductBuilder;
 import org.atom.stockwell.db.classes.Product;
 import org.atom.stockwell.inner.LagerPanel;
@@ -10,7 +9,6 @@ import org.atom.stockwell.inner.LagerPanel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.NoSuchElementException;
 
 public class HinzufuegenDialog extends JDialog {
 
@@ -40,8 +38,6 @@ public class HinzufuegenDialog extends JDialog {
                 String name = nameField.getText();
                 String barcode = barcodeField.getText();
                 String kategorie = kategorieField.getText();
-
-                DatabaseManager db = new DatabaseManager();
 
                 Product product = new ProductBuilder()
                         .startBuild()

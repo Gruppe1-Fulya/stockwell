@@ -1,26 +1,19 @@
 package org.atom.stockwell.inner.dialogs;
 
-import org.atom.stockwell.Controller;
+import org.atom.stockwell.controllers.Controller;
 import org.atom.stockwell.MainFrame;
-import org.atom.stockwell.MainPanel;
-import org.atom.stockwell.db.DatabaseManager;
 import org.atom.stockwell.db.builders.LagerProductBuilder;
 import org.atom.stockwell.db.builders.TransaktionBuilder;
 import org.atom.stockwell.db.classes.*;
 import org.atom.stockwell.inner.TransaktionenPanel;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class EinkaufDialog extends JDialog {
     private JPanel einkaufPanel;
@@ -45,9 +38,8 @@ public class EinkaufDialog extends JDialog {
         setLocationRelativeTo(mainFrame);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-        DatabaseManager db = new DatabaseManager();
         List<Product> productList = Controller.GetProductList();
-        List<Person>  kundenList = db.getKundeList();
+        List<Person>  kundenList = Controller.GetKundenList();
         DefaultComboBoxModel<Product> productBoxModel = new DefaultComboBoxModel<>();
         for (Product product : productList) {
             productBoxModel.addElement(product);
@@ -76,12 +68,7 @@ public class EinkaufDialog extends JDialog {
 
                 // getting the user who logged in
                 String username = mainFrame.getMainPanel().getUsername();
-
-                Mitarbeiter user = db.getMitarbeiterList()
-                        .stream()
-                        .filter(u -> u.getUsername().equals(username))
-                        .findFirst().get();
-
+                Mitarbeiter user = Controller.GetMitarbeiter(username).get();
                 Person selectedKunde = (Person) kundenListBox.getSelectedItem();
 
                 // building a new transaction
