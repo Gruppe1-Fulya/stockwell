@@ -5,10 +5,7 @@ package org.atom.stockwell.controllers;
     UI ile DB arasındaki controller
  */
 
-import org.atom.stockwell.controllers.interfaces.BaseController;
-import org.atom.stockwell.controllers.interfaces.LagerController;
-import org.atom.stockwell.controllers.interfaces.ProduktController;
-import org.atom.stockwell.controllers.interfaces.TransaktionController;
+import org.atom.stockwell.controllers.interfaces.*;
 import org.atom.stockwell.db.classes.*;
 import org.atom.stockwell.inner.LagerPanel;
 import org.atom.stockwell.inner.PersonenPanel;
@@ -18,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import java.util.Optional;
 
-public class Controller implements LagerController, BaseController {
+public class Controller {
 
     // Login Operations
     public static boolean einLoggen(String username, String password) {
@@ -76,6 +73,12 @@ public class Controller implements LagerController, BaseController {
 
     public static boolean AddTransaktionDB(Transaktion transaktion) throws Exception {
         return TransaktionController.AddTransaktionDB(transaktion);
+    }
+
+    // FinanzController
+
+    public static FinanzStatus getCurrentStatus() {
+        return FinanzController.getCurrentStatus();
     }
 
 }
