@@ -2,6 +2,7 @@ package org.atom.stockwell.inner.overview;
 
 import javax.swing.*;
 
+// ************** DISABLED *************************
 public class BudgetStatusPanel extends JPanel {
     private JPanel budgetStatusPanel;
     private JPanel gesamtertrag;
