@@ -1,6 +1,6 @@
 package org.atom.stockwell.inner;
 
-import org.atom.stockwell.Controller;
+import org.atom.stockwell.controllers.Controller;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;

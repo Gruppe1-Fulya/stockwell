@@ -103,6 +103,7 @@ public class DatabaseManager {
                 .setBarcodeId(rs.getString("barcode"))
                 .setName(rs.getString("name"))
                 .setCategory(rs.getString("category"))
+                .setActive(rs.getInt("active") == 1)
                 .doneBuild());
     }
 
@@ -380,13 +381,15 @@ public class DatabaseManager {
         String sql = "update product set " +
                 "barcode = '%s'," +
                 "name = '%s'," +
-                "category = '%s" +
+                "category = '%s'," +
+                "active = '%d' " +
                 "where id = '%s'";
 
         sql = String.format(sql,
                 product.getBarcodeId(),
                 product.getName(),
                 product.getCategory(),
+                (product.isActive() ? 1 : 0),
                 product.getId()
         );
 

@@ -81,4 +81,8 @@ public class Transaktion {
     public void setMitarbeiter(Mitarbeiter mitarbeiter) {
         this.mitarbeiter = mitarbeiter;
     }
+
+    public Long getTotalCost() {
+        return (long) getCost() * (long) getAmount();
+    }
 }

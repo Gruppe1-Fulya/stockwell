@@ -1,5 +1,7 @@
 package org.atom.stockwell.inner.overview;
 
+import org.atom.stockwell.db.classes.FinanzStatus;
+
 import javax.swing.*;
 
 // ************** DISABLED *************************
@@ -15,9 +17,9 @@ public class BudgetStatusPanel extends JPanel {
     private JLabel gesamtaufwandAnzahlLabel;
     private JLabel budgetAnzahlLabel;
 
-    public BudgetStatusPanel(){
+    public BudgetStatusPanel(FinanzStatus finanzStatus){
         add(budgetStatusPanel);
-        setupBudget(300000,210000);
+        setupBudget(finanzStatus.totalIncome,finanzStatus.totalOutcome);
 
     }
 
