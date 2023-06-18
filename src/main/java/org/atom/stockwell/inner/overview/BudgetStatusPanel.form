@@ -42,7 +42,7 @@
               <font name="Bahnschrift" size="27"/>
               <foreground color="-13447886"/>
               <horizontalAlignment value="10"/>
-              <horizontalTextPosition value="0"/>
+              <horizontalTextPosition value="2"/>
               <text value="+20000€"/>
             </properties>
           </component>
@@ -79,7 +79,7 @@
               <font name="Bahnschrift" size="27"/>
               <foreground color="-32944"/>
               <horizontalAlignment value="10"/>
-              <horizontalTextPosition value="0"/>
+              <horizontalTextPosition value="2"/>
               <text value="-10000€"/>
             </properties>
           </component>
@@ -116,7 +116,7 @@
               <font name="Bahnschrift" size="27"/>
               <foreground color="-10560789"/>
               <horizontalAlignment value="10"/>
-              <horizontalTextPosition value="0"/>
+              <horizontalTextPosition value="2"/>
               <text value="=10000€"/>
             </properties>
           </component>
