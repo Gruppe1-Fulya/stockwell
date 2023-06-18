@@ -1,6 +1,8 @@
 package org.atom.stockwell.inner;
 
 import org.atom.stockwell.MainFrame;
+import org.atom.stockwell.controllers.Controller;
+import org.atom.stockwell.db.classes.FinanzStatus;
 import org.atom.stockwell.inner.overview.BudgetStatusPanel;
 import org.atom.stockwell.inner.overview.SalesGraphPanel;
 
@@ -24,22 +26,13 @@ public class HomePanel extends JPanel {
     private JPanel purchasesPanel;
     private JPanel profitPanel;
 
-    private HashMap<String,Long> salesData = new HashMap<String,Long>();
+    private final FinanzStatus finanzStatus = Controller.getCurrentStatus();
 
     public HomePanel(MainFrame mainFrame){
         add(homePanel);
-        salesData.put("Date 1", 100L);
-        salesData.put("Date 2", 150L);
-        salesData.put("Date 3", 200L);
-        salesData.put("Date 4", 250L);
-        salesData.put("Date 5", 300L);
-        salesData.put("Date 6", 350L);
-        salesData.put("Date 7", 400L);
-        salesData.put("Date 8", 450L);
-        salesData.put("Date 9", 500L);
         //graphPanel.add(new SalesGraphPanel(salesData));
-        displayPanel(mainFrame,salesPanel, new SalesGraphPanel(salesData), BorderLayout.CENTER);
-        displayPanel(mainFrame,budgetStatus, new BudgetStatusPanel(), BorderLayout.CENTER);
+        displayPanel(mainFrame,salesPanel, new SalesGraphPanel(finanzStatus.salesPerDay), BorderLayout.CENTER);
+        displayPanel(mainFrame,budgetStatus, new BudgetStatusPanel(finanzStatus), BorderLayout.CENTER);
     }
 
 

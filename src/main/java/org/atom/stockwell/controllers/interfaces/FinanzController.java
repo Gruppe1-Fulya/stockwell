@@ -3,10 +3,8 @@ package org.atom.stockwell.controllers.interfaces;
 import org.atom.stockwell.db.DatabaseManager;
 import org.atom.stockwell.db.classes.FinanzStatus;
 import org.atom.stockwell.db.classes.Transaktion;
-import org.junit.Test;
 
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,9 +19,9 @@ public interface FinanzController {
         db.getTransaktions()
                 .forEach(transaktion -> {
                     if (transaktion.getType().equals("EINKAUF")) {
-                        status.totalOutcome += transaktion.getCost();
+                        status.totalOutcome += transaktion.getTotalCost();
                     } else if (transaktion.getType().equals("VERKAUF")) {
-                        status.totalIncome += transaktion.getCost();
+                        status.totalIncome += transaktion.getTotalCost();
                     }
                 });
         status.totalProfit = status.totalIncome - status.totalOutcome;

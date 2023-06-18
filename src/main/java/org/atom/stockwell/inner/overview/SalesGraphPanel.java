@@ -6,15 +6,37 @@ import org.springframework.context.ApplicationListener;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class SalesGraphPanel extends JPanel {
 
     private JPanel salesGraphPanel;
-    private HashMap<String, Long> salesData;
+    private ArrayList<String> keysData = new ArrayList<>();
+    private ArrayList<Long> valuesData = new ArrayList<>();
 
-    public SalesGraphPanel(HashMap<String, Long> salesData) {
-        this.salesData = salesData;
+    public SalesGraphPanel(HashMap<String, Integer> salesData) {
+        int total = 0;
+        var keys = new java.util.ArrayList<>(salesData.keySet().stream().toList());
+        keys.sort(new Comparator<String>() {
+            SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+            @Override
+            public int compare(String s, String t1) {
+                try {
+                    return fmt.parse(s).compareTo(fmt.parse(t1));
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        for (String key: keys) {
+            total += salesData.get(key);
+            keysData.add(key);
+            valuesData.add((long) total);
+        }
+        System.out.println(keysData);
+        System.out.println(valuesData);
     }
 
     @Override
@@ -40,15 +62,15 @@ public class SalesGraphPanel extends JPanel {
         int graphWidth = width - 80;
         int graphHeight = height - 80;
 
-        int xGap = graphWidth / (salesData.size() - 1);
-        int yGap = graphHeight / (getMaxValue() / 100);
+        int xGap = graphWidth / ((valuesData.size() <= 1) ? 1 : (valuesData.size() - 1));
+        int yGap = graphHeight / ((int) Math.ceil(((double) getMaxValue() / 100)));
 
         g2d.setStroke(new BasicStroke(0.1f));
 
         g2d.setComposite(gridComposite);
         g.setColor(new Color(140, 140, 140));
         int i = 0;
-        for (String date : salesData.keySet()) {
+        for (String date : keysData) {
             int x = 40 + i * xGap;
             g.drawLine(x, height - 40, x, 40);
             i++;
@@ -73,9 +95,9 @@ public class SalesGraphPanel extends JPanel {
         i = 0;
         int prevX = -1;
         int prevY = -1;
-        for (String date : salesData.keySet()) {
+        for (Long value : valuesData) {
             int x = 40 + i * xGap;
-            int y = height - 40 - (int) (salesData.get(date) / 100 * yGap);
+            int y = height - 40 - (int) (value / 100 * yGap);
 
             if (prevX != -1 && prevY != -1) {
                 g.drawLine(prevX, prevY, x, y);
@@ -92,31 +114,43 @@ public class SalesGraphPanel extends JPanel {
         g.setColor(Color.BLACK);
 
         i = 0;
-        for (String date : salesData.keySet()) {
+        for (int k = 0; k < keysData.size(); k++) {
+            String date =  keysData.get(k);
+            Long value = valuesData.get(k);
             int x = 40 + i * xGap;
 
             // Y labels
-            String salesLabel = String.valueOf(salesData.get(date));
+            String salesLabel = String.valueOf(value);
             int salesLabelWidth = fm.stringWidth(salesLabel);
-            int y = height - 40 - (int) (salesData.get(date) / 100 * yGap);
+            int y = height - 40 - (int) (value / 100 * yGap);
             g.drawString(salesLabel, 14, y + fm.getAscent() / 2);
 
             // Month labels
-            String monthLabel = "Month " + (i + 1);
-            int labelWidth = fm.stringWidth(monthLabel);
-            g.drawString(monthLabel, x - labelWidth / 2, height - 20);
+            // String monthLabel = "Month " + (i + 1);
+            int labelWidth = fm.stringWidth(date);
+            g.drawString(date, x - labelWidth / 2, height - 20);
 
             i++;
         }
     }
 
     private int getMaxValue() {
-        long max = 0;
-        for (long value : salesData.values()) {
+        long max = 1;
+        for (long value : valuesData) {
             if (value > max) {
                 max = value;
             }
         }
         return (int) max;
+    }
+
+    private int getMinValue() {
+        long min = Long.MAX_VALUE;
+        for (long value : valuesData) {
+            if (value < min) {
+                min = value;
+            }
+        }
+        return (int) ((getMaxValue() != min) ? min : min - 1);
     }
 }
