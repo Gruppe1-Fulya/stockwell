@@ -1,4 +1,4 @@
-package org.atom.stockwell.inner.graphs;
+package org.atom.stockwell.inner.overview;
 
 import javax.swing.*;
 import java.awt.*;

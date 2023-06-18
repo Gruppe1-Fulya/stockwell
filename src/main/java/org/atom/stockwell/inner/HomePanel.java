@@ -1,9 +1,11 @@
 package org.atom.stockwell.inner;
 
 import org.atom.stockwell.MainFrame;
-import org.atom.stockwell.inner.graphs.SalesGraphPanel;
+import org.atom.stockwell.inner.overview.BudgetStatusPanel;
+import org.atom.stockwell.inner.overview.SalesGraphPanel;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class HomePanel extends JPanel {
@@ -19,15 +21,16 @@ public class HomePanel extends JPanel {
     public HomePanel(MainFrame mainFrame){
         add(homePanel);
 
-        graphPanel.setLayout(new CardLayout());
-        graphPanel.add(new SalesGraphPanel(salesData),"sales");
-        displayPanel(mainFrame,"sales");
+        //graphPanel.add(new SalesGraphPanel(salesData));
+        displayPanel(mainFrame,graphPanel, new SalesGraphPanel(salesData), BorderLayout.CENTER);
+        displayPanel(mainFrame,budgetStatus, new BudgetStatusPanel(), BorderLayout.CENTER);
     }
 
 
-    void displayPanel(MainFrame mainFrame, String name) {
-        CardLayout cardLayout = (CardLayout) graphPanel.getLayout();
-        cardLayout.show(graphPanel,name);
+    void displayPanel(MainFrame mainFrame, JPanel displayPanel, JPanel panel, String borderLayout) {
+        panel.setPreferredSize(new Dimension(320, 80));
+        displayPanel.setLayout(new BorderLayout());
+        displayPanel.add(panel, borderLayout);
         mainFrame.validate();
     }
 }
