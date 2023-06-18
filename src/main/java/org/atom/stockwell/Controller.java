@@ -290,22 +290,22 @@ public class Controller {
         if (!db.getProductList()
                 .stream()
                 .anyMatch(p -> p.getId().equals(transaktion.getProduct().getId())))
-            throw new Exception("[SW] PRODUCT DOESN'T EXITS");
+            throw new Exception("[SW] PRODUCT DOESN'T EXIST");
 
         if (!db.getPersonList()
                 .stream()
                 .anyMatch(p -> p.getId().equals(transaktion.getKunde().getId())))
-            throw new Exception("[SW] KUNDE DOESN'T EXITS");
+            throw new Exception("[SW] KUNDE DOESN'T EXIST");
 
         if (!db.getMitarbeiterList()
                 .stream()
                 .anyMatch(p -> p.getId().equals(transaktion.getMitarbeiter().getId())))
-            throw new Exception("[SW] MITARBEITER DOESN'T EXITS");
+            throw new Exception("[SW] MITARBEITER DOESN'T EXIST");
 
         if (db.getTransaktions()
                 .stream()
                 .anyMatch(t -> t.getId().equals(transaktion.getId())))
-            throw new Exception("[SW] TRANSAKTION ALREADY EXITS");
+            throw new Exception("[SW] TRANSAKTION ALREADY EXISTS");
 
 
         if (!db.createNewTransaktion(transaktion))

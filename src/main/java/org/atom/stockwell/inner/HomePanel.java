@@ -5,7 +5,6 @@ import org.atom.stockwell.inner.overview.BudgetStatusPanel;
 import org.atom.stockwell.inner.overview.SalesGraphPanel;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.HashMap;
 
@@ -18,6 +17,12 @@ public class HomePanel extends JPanel {
     private JPanel latestProduct;
     private JLabel transaktionLabel;
     private JLabel letztesProduktLabel;
+    private JPanel transaktionTitle;
+    private JPanel produktTitle;
+    private JTabbedPane tabbedPane;
+    private JPanel salesPanel;
+    private JPanel purchasesPanel;
+    private JPanel profitPanel;
 
     private HashMap<String,Long> salesData = new HashMap<String,Long>();
 
@@ -33,7 +38,7 @@ public class HomePanel extends JPanel {
         salesData.put("Date 8", 450L);
         salesData.put("Date 9", 500L);
         //graphPanel.add(new SalesGraphPanel(salesData));
-        displayPanel(mainFrame,graphPanel, new SalesGraphPanel(salesData), BorderLayout.CENTER);
+        displayPanel(mainFrame,salesPanel, new SalesGraphPanel(salesData), BorderLayout.CENTER);
         displayPanel(mainFrame,budgetStatus, new BudgetStatusPanel(), BorderLayout.CENTER);
     }
 
