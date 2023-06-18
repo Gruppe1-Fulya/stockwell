@@ -3,11 +3,14 @@ package org.atom.stockwell.inner;
 import org.atom.stockwell.MainFrame;
 import org.atom.stockwell.controllers.Controller;
 import org.atom.stockwell.db.classes.FinanzStatus;
+import org.atom.stockwell.db.classes.Product;
+import org.atom.stockwell.db.classes.Transaktion;
 import org.atom.stockwell.inner.overview.BudgetStatusPanel;
 import org.atom.stockwell.inner.overview.SalesGraphPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class HomePanel extends JPanel {
@@ -72,6 +75,8 @@ public class HomePanel extends JPanel {
     public HomePanel(MainFrame mainFrame){
         add(homePanel);
         setupBudget(finanzStatus.totalIncome , finanzStatus.totalOutcome);
+        setupLetzteTransaktion(Arrays.stream(finanzStatus.lastTransaktionen).findFirst().get());
+        finanzStatus.lastProduct.ifPresent(this::setupLetzteProduct);
         //graphPanel.add(new SalesGraphPanel(salesData));
         displayPanel(mainFrame,salesPanel, new SalesGraphPanel(finanzStatus.salesPerDay), BorderLayout.CENTER);
         // displayPanel(mainFrame,budgetStatus, new BudgetStatusPanel(finanzStatus), BorderLayout.CENTER);
@@ -92,5 +97,26 @@ public class HomePanel extends JPanel {
         long aufwandAnzahl = Long.parseLong(gesamtaufwandAnzahlLabel.getText().replaceAll("[^0-9]", ""));
         long budgetAnzahl = ertragAnzahl-aufwandAnzahl;
         budgetAnzahlLabel.setText("="+Long.toString(budgetAnzahl) + "€");
+    }
+
+    public void setupLetzteTransaktion(Transaktion transaktion) {
+        transaktionID.setText(transaktion.getId());
+        produktID.setText(transaktion.getProduct().getId());
+        typ.setText(transaktion.getType());
+        kunde.setText(transaktion.getKunde().getName());
+        mitarbeiter.setText(transaktion.getMitarbeiter().getName());
+        anzahl.setText(String.valueOf(transaktion.getAmount()));
+        einzelpreis.setText(String.valueOf(transaktion.getCost()));
+        datum.setText(transaktion.getDate().toString());
+    }
+
+    public void setupLetzteProduct(Transaktion transaktion) {
+        p_produktID.setText(transaktion.getProduct().getId());
+        p_name.setText(transaktion.getProduct().getName());
+        p_kategorie.setText(transaktion.getProduct().getCategory());
+        p_barcode.setText(transaktion.getProduct().getBarcodeId());
+        p_anzahl.setText(String.valueOf(transaktion.getAmount()));
+        p_inventar.setText("BULUCAM !!"); // burasını çekmek biraz uzun ondan sonra yapıcam
+        p_datum.setText(transaktion.getDate().toString());
     }
 }
