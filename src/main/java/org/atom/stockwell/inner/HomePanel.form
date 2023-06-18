@@ -3,25 +3,16 @@
   <grid id="27dc6" binding="homePanel" layout-manager="GridLayoutManager" row-count="3" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="601" height="584"/>
+      <xy x="20" y="20" width="1147" height="584"/>
     </constraints>
     <properties>
       <preferredSize width="1024" height="624"/>
     </properties>
     <border type="none"/>
     <children>
-      <grid id="d673e" binding="budgetStatus" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children/>
-      </grid>
       <grid id="8170f" binding="graphPanel" layout-manager="CardLayout" hgap="0" vgap="0">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="6" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="2" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -69,41 +60,243 @@
           </tabbedpane>
         </children>
       </grid>
-      <grid id="3f75" binding="latestTransactions" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="3f75" binding="latestTransactions" layout-manager="GridLayoutManager" row-count="3" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="4" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="4" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font/>
         </properties>
-        <border type="etched" title=""/>
+        <border type="none" title=""/>
         <children>
-          <vspacer id="4ee10">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <grid id="8ef0b" binding="transaktionTitle" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="b479f" binding="transaktionPanel" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="4" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <font/>
-            </properties>
-            <border type="bevel-raised" title=""/>
+            <properties/>
+            <border type="bevel-lowered"/>
             <children>
-              <component id="f4bdc" class="javax.swing.JLabel" binding="transaktionLabel">
+              <component id="f00a5" class="javax.swing.JLabel" binding="transaktionIDLabel">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="Bahnschrift" size="18"/>
                   <horizontalAlignment value="10"/>
-                  <text value="Die letzte Transaktion"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="ID:"/>
+                  <verticalAlignment value="0"/>
                 </properties>
               </component>
+              <component id="442b9" class="javax.swing.JLabel" binding="transaktionID">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="afcba606-e190-4073-b92e-8a16ad17bb0a"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <hspacer id="dfe4">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="d7db4" class="javax.swing.JLabel" binding="typLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Typ:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="198bf" class="javax.swing.JLabel" binding="typ">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Einkauf"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="f0f54" class="javax.swing.JLabel" binding="datumLabel">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Datum:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="2cfff" class="javax.swing.JLabel" binding="datum">
+                <constraints>
+                  <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="20-05-2023 01:12:34"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="76a89" class="javax.swing.JLabel" binding="kundenLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Kunde:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="46f87" class="javax.swing.JLabel" binding="kunde">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="elon"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="67b2c" class="javax.swing.JLabel" binding="mitarbeiterLabel">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Mitarbeiter:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="fac1b" class="javax.swing.JLabel" binding="mitarbeiter">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="caglar"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="c02f8" class="javax.swing.JLabel" binding="anzahlLabel">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Anzahl:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="35267" class="javax.swing.JLabel" binding="anzahl">
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="11"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="a7cd" class="javax.swing.JLabel" binding="produktIDLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Produkt-ID:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="bd421" class="javax.swing.JLabel" binding="produktID">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="96a9f46a-0698-4b34-a70c-6b89ef7ed084"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="2866f" class="javax.swing.JLabel" binding="einzelpreisLabel">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Einzelpreis:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="3b837" class="javax.swing.JLabel" binding="einzelpreis">
+                <constraints>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="33"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <grid id="8ef0b" binding="transaktionTitle" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font/>
+                </properties>
+                <border type="bevel-raised" title=""/>
+                <children>
+                  <component id="f4bdc" class="javax.swing.JLabel" binding="transaktionLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Bahnschrift" size="18"/>
+                      <horizontalAlignment value="10"/>
+                      <text value="Die letzte Transaktion"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
             </children>
           </grid>
         </children>
@@ -111,36 +304,209 @@
       <grid id="32ba8" binding="latestProduct" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="4" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="4" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font/>
         </properties>
-        <border type="etched" title=""/>
+        <border type="none" title=""/>
         <children>
-          <vspacer id="11ba9">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <grid id="c1968" binding="produktTitle" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="d9975" binding="produktPanel" layout-manager="GridLayoutManager" row-count="8" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="4" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <font/>
-            </properties>
-            <border type="bevel-raised" title=""/>
+            <properties/>
+            <border type="bevel-lowered"/>
             <children>
-              <component id="d4f0c" class="javax.swing.JLabel" binding="letztesProduktLabel">
+              <component id="a38ed" class="javax.swing.JLabel" binding="p_produktIDLabel">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="Bahnschrift" size="18"/>
                   <horizontalAlignment value="10"/>
-                  <text value="Zuletzt hinzugefügtes Produkt"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Produkt-ID:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="ca2d0" class="javax.swing.JLabel" binding="p_produktID">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="21089ac0-a545-4a14-b115-2634d0714c49"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="18cd4" class="javax.swing.JLabel" binding="p_nameLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Name:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="42336" class="javax.swing.JLabel" binding="p_name">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="test"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="c34fa" class="javax.swing.JLabel" binding="p_barcodeLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Barcode:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="7c468" class="javax.swing.JLabel" binding="p_barcode">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="0002"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="2bf93" class="javax.swing.JLabel" binding="p_kategorieLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Kategorie:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="f5842" class="javax.swing.JLabel" binding="p_kategorie">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="test"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="46b45" class="javax.swing.JLabel" binding="p_anzahlLabel">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Anzahl:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="bc24e" class="javax.swing.JLabel" binding="p_anzahl">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="31"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="43bb5" class="javax.swing.JLabel" binding="p_inventarLabel">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Inventar:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="f74d9" class="javax.swing.JLabel" binding="p_inventar">
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="313100"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <grid id="c1968" binding="produktTitle" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="7" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font/>
+                </properties>
+                <border type="bevel-raised" title=""/>
+                <children>
+                  <component id="d4f0c" class="javax.swing.JLabel" binding="letztesProduktLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Bahnschrift" size="18"/>
+                      <horizontalAlignment value="10"/>
+                      <text value="Zuletzt hinzugefügtes Produkt"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <component id="56241" class="javax.swing.JLabel" binding="p_datumLabel">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Datum:"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="ef797" class="javax.swing.JLabel" binding="p_datum">
+                <constraints>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="18"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="28-05-2023 20:48:03"/>
+                  <verticalAlignment value="0"/>
                 </properties>
               </component>
             </children>
@@ -157,6 +523,130 @@
           <text value="Home"/>
         </properties>
       </component>
+      <grid id="a41f" binding="budgetStatusPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <preferredSize width="440" height="330"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="19d04" binding="gesamtertrag" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
+            </constraints>
+            <properties/>
+            <border type="bevel-lowered"/>
+            <children>
+              <component id="462e3" class="javax.swing.JLabel" binding="gesamtertragLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="24"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Gesamtertrag:"/>
+                </properties>
+              </component>
+              <hspacer id="11fa">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="deecc" class="javax.swing.JLabel" binding="gesamtertragAnzahlLabel">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="27"/>
+                  <foreground color="-13447886"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="2"/>
+                  <text value="+20000€"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="c0f13" binding="gesamtaufwand" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
+            </constraints>
+            <properties/>
+            <border type="bevel-lowered"/>
+            <children>
+              <component id="f3d13" class="javax.swing.JLabel" binding="gesamtaufwandLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="1" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="24"/>
+                  <horizontalAlignment value="10"/>
+                  <text value="Gesamtaufwand:"/>
+                </properties>
+              </component>
+              <hspacer id="e7f65">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="4fedc" class="javax.swing.JLabel" binding="gesamtaufwandAnzahlLabel">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="27"/>
+                  <foreground color="-32944"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="2"/>
+                  <text value="-10000€"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="41c5b" binding="budget" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
+            </constraints>
+            <properties/>
+            <border type="bevel-lowered"/>
+            <children>
+              <component id="f9fba" class="javax.swing.JLabel" binding="budgetLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="24"/>
+                  <horizontalAlignment value="10"/>
+                  <text value="Budget:"/>
+                </properties>
+              </component>
+              <hspacer id="8e83b">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="11852" class="javax.swing.JLabel" binding="budgetAnzahlLabel">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Bahnschrift" size="27"/>
+                  <foreground color="-10560789"/>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="2"/>
+                  <text value="=10000€"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>
