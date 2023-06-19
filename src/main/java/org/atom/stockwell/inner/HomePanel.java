@@ -73,26 +73,27 @@ public class HomePanel extends JPanel {
     private JLabel p_datum;
 
     private FinanzStatus finanzStatus = Controller.getCurrentStatus();
+    private SalesGraphPanel salesGraphPanel;
 
     public HomePanel(MainFrame mainFrame){
-        add(homePanel);
         setupBudget(finanzStatus.totalIncome , finanzStatus.totalOutcome);
         setupLetzteTransaktion(Arrays.stream(finanzStatus.lastTransaktionen).findFirst().get());
         finanzStatus.lastProduct.ifPresent(this::setupLetzteProduct);
-        //graphPanel.add(new SalesGraphPanel(salesData));
-        displayPanel(mainFrame,salesPanel, new SalesGraphPanel(finanzStatus.salesPerDay), BorderLayout.CENTER);
-        // displayPanel(mainFrame,budgetStatus, new BudgetStatusPanel(finanzStatus), BorderLayout.CENTER);
-
+        salesGraphPanel = new SalesGraphPanel(finanzStatus.salesPerDay);
+        displayPanel(mainFrame,salesPanel, salesGraphPanel, BorderLayout.CENTER);
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 finanzStatus = Controller.getCurrentStatus();
+                salesGraphPanel.updateData(finanzStatus.salesPerDay);
+                salesGraphPanel.repaint();
                 setupBudget(finanzStatus.totalIncome , finanzStatus.totalOutcome);
                 setupLetzteTransaktion(Arrays.stream(finanzStatus.lastTransaktionen).findFirst().get());
                 finanzStatus.lastProduct.ifPresent(transaktion -> setupLetzteProduct(transaktion));
-                displayPanel(mainFrame,salesPanel, new SalesGraphPanel(finanzStatus.salesPerDay), BorderLayout.CENTER);
+
             }
         });
+        add(homePanel);
 
     }
 

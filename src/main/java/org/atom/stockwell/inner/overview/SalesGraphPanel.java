@@ -2,10 +2,13 @@ package org.atom.stockwell.inner.overview;
 
 import ch.qos.logback.core.joran.action.NOPAction;
 import org.atom.stockwell.MainFrame;
+import org.atom.stockwell.controllers.Controller;
 import org.springframework.context.ApplicationListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -15,26 +18,8 @@ public class SalesGraphPanel extends JPanel {
     private JPanel salesGraphPanel;
     private ArrayList<String> keysData = new ArrayList<>();
     private ArrayList<Long> valuesData = new ArrayList<>();
-
     public SalesGraphPanel(HashMap<String, Integer> salesData) {
-        int total = 0;
-        var keys = new java.util.ArrayList<>(salesData.keySet().stream().toList());
-        keys.sort(new Comparator<String>() {
-            SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-            @Override
-            public int compare(String s, String t1) {
-                try {
-                    return fmt.parse(s).compareTo(fmt.parse(t1));
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-        for (String key: keys) {
-            total += salesData.get(key);
-            keysData.add(key);
-            valuesData.add((long) total);
-        }
+        updateData(salesData);
     }
 
     @Override
@@ -151,4 +136,32 @@ public class SalesGraphPanel extends JPanel {
         }
         return (int) ((getMaxValue() != min) ? min : min - 1);
     }
+
+    public void updateData(HashMap<String, Integer> salesData) {
+        keysData.clear();
+        valuesData.clear();
+        int total = 0;
+
+        var keys = new ArrayList<>(salesData.keySet().stream().toList());
+        keys.sort(new Comparator<String>() {
+            SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+            @Override
+            public int compare(String s, String t1) {
+                try {
+                    return fmt.parse(s).compareTo(fmt.parse(t1));
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        for (String key : keys) {
+            total += salesData.get(key);
+            keysData.add(key);
+            valuesData.add((long) total);
+        }
+
+        repaint();
+    }
+
 }

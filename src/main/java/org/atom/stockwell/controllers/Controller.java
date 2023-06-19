@@ -4,7 +4,6 @@ package org.atom.stockwell.controllers;
 /*
     UI ile DB arasındaki controller
  */
-
 import org.atom.stockwell.controllers.interfaces.*;
 import org.atom.stockwell.db.classes.*;
 import org.atom.stockwell.inner.LagerPanel;

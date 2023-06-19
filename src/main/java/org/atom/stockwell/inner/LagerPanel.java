@@ -1,7 +1,6 @@
 package org.atom.stockwell.inner;
-
-import org.atom.stockwell.controllers.Controller;
 import org.atom.stockwell.MainFrame;
+import org.atom.stockwell.controllers.Controller;
 import org.atom.stockwell.inner.dialogs.HinzufuegenDialog;
 import org.atom.stockwell.inner.dialogs.LoeschenDialog;
 
