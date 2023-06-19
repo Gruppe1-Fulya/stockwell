@@ -7,6 +7,9 @@ import org.atom.stockwell.db.classes.Transaktion;
 import org.atom.stockwell.inner.overview.ProfitGraphPanel;
 import org.atom.stockwell.inner.overview.PurchasesGraphPanel;
 import org.atom.stockwell.inner.overview.SalesGraphPanel;
+import org.knowm.xchart.CategoryChart;
+import org.knowm.xchart.CategoryChartBuilder;
+import org.knowm.xchart.XChartPanel;
 
 import javax.swing.*;
 import java.awt.*;
