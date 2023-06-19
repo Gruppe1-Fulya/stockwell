@@ -14,7 +14,7 @@ public interface FinanzController {
     static FinanzStatus getCurrentStatus() {
         FinanzStatus status = new FinanzStatus();
         DatabaseManager db = new DatabaseManager();
-        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM");
 
         // 1. bölge
         db.getTransaktions()
@@ -30,24 +30,34 @@ public interface FinanzController {
         // 2. bölge
         db.getTransaktions()
                 .stream().filter(transaktion -> transaktion.getType().equals("VERKAUF"))
-                .forEach(transaktion -> status.salesPerDay.put(
-                        fmt.format(transaktion.getDate()),
-                        transaktion.getTotalCost() +
-                        status.salesPerDay.getOrDefault(fmt.format(transaktion.getDate()), 0)
-                        )
+                .forEach(transaktion -> {
+                        if (status.salesPerDay.containsKey(fmt.format(transaktion.getDate()))) {
+                            status.salesPerDay.put(
+                                    fmt.format(transaktion.getDate()),
+                                    transaktion.getTotalCost() +
+                                            status.salesPerDay.getOrDefault(fmt.format(transaktion.getDate()), 0)
+                            );
+                        }
+                    }
                 );
 
         db.getTransaktions()
                 .stream().filter(transaktion -> transaktion.getType().equals("EINKAUF"))
-                .forEach(transaktion -> status.purchasesPerDay.put(
-                                fmt.format(transaktion.getDate()),
-                                transaktion.getTotalCost() +
-                                status.purchasesPerDay.getOrDefault(fmt.format(transaktion.getDate()), 0)
-                        )
+                .forEach(transaktion -> {
+                        if (status.purchasesPerDay.containsKey(fmt.format(transaktion.getDate()))) {
+                            status.purchasesPerDay.put(
+                                    fmt.format(transaktion.getDate()),
+                                    transaktion.getTotalCost() +
+                                            status.purchasesPerDay.getOrDefault(fmt.format(transaktion.getDate()), 0)
+                            );
+                        }
+                    }
                 );
 
-        status.salesPerDay.forEach((key, value) -> status.profitPerDay.put(key, status.profitPerDay.getOrDefault(key, 0) + value));
-        status.purchasesPerDay.forEach((key, value) -> status.profitPerDay.put(key, status.profitPerDay.getOrDefault(key, 0) - value));
+        status.salesPerDay.forEach((key, value) -> status.profitPerDay.put(key,
+                status.profitPerDay.getOrDefault(key, 0) + value));
+        status.purchasesPerDay.forEach((key, value) -> status.profitPerDay.put(key,
+                status.profitPerDay.getOrDefault(key, 0) - value));
 
         // 3. bölge
         List<Transaktion> transaktionList = db.getTransaktions();

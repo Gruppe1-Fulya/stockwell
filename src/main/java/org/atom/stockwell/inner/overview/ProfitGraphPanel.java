@@ -2,6 +2,7 @@ package org.atom.stockwell.inner.overview;
 
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.XChartPanel;
+import org.knowm.xchart.style.theme.GGPlot2Theme;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,7 +27,11 @@ public class ProfitGraphPanel extends XChartPanel<CategoryChart> {
                 keysData,
                 valuesData
         );
+        this.getChart().getStyler().setTheme(new GGPlot2Theme());
         this.getChart().getStyler().setLegendVisible(false);
+        this.getChart().getStyler().setChartBackgroundColor(new Color(90, 87, 101));
+        this.getChart().getStyler().setXAxisTickLabelsColor(new Color(208, 208, 208));
+        this.getChart().getStyler().setYAxisTickLabelsColor(new Color(208, 208, 208));
         updateData(profitData);
     }
 
@@ -52,7 +57,7 @@ public class ProfitGraphPanel extends XChartPanel<CategoryChart> {
 
     private Date parseDate(String dateString) {
         try {
-            return new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+            return new SimpleDateFormat("dd/MM").parse(dateString);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
