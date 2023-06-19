@@ -1,13 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.atom.stockwell.inner.dialogs.KundenHinzufuegenDialog">
-  <grid id="27dc6" row-count="1" column-count="1" layout-manager="GridLayoutManager">
+  <grid id="27dc6" binding="kundenHinzufuegenPanel" layout-manager="GridLayoutManager" row-count="6" column-count="11" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
-      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+      <xy x="20" y="20" width="616" height="452"/>
     </constraints>
     <properties/>
     <border type="none"/>
-    <children/>
+    <children>
+      <component id="a8976" class="javax.swing.JLabel" binding="nummerLabel">
+        <constraints>
+          <grid row="2" column="1" row-span="2" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="1" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Bahnschrift" size="14"/>
+          <text value="Telefonnummer:"/>
+        </properties>
+      </component>
+      <component id="d4483" class="javax.swing.JLabel" binding="mailAdresseLabel">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="1" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Bahnschrift" size="14"/>
+          <text value="E-Mail Adresse:"/>
+        </properties>
+      </component>
+      <component id="d8a18" class="javax.swing.JLabel" binding="nameLabel">
+        <constraints>
+          <grid row="0" column="1" row-span="2" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Bahnschrift" size="14"/>
+          <text value="Name:"/>
+        </properties>
+      </component>
+      <component id="e455e" class="javax.swing.JTextField" binding="nameField">
+        <constraints>
+          <grid row="0" column="4" row-span="2" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="100" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="db360" class="javax.swing.JTextField" binding="nummerField">
+        <constraints>
+          <grid row="2" column="4" row-span="2" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="100" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="7b66b" class="javax.swing.JTextField" binding="mailField">
+        <constraints>
+          <grid row="4" column="4" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="100" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <hspacer id="f7788">
+        <constraints>
+          <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="2c0b1" class="javax.swing.JButton" binding="cancelButton">
+        <constraints>
+          <grid row="5" column="4" row-span="1" col-span="7" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <focusPainted value="false"/>
+          <focusable value="true"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <horizontalAlignment value="0"/>
+          <text value="Abbrechen"/>
+        </properties>
+      </component>
+      <component id="f7625" class="javax.swing.JButton" binding="okButton">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <focusPainted value="false"/>
+          <focusable value="true"/>
+          <font name="Yu Gothic UI Semibold" size="14"/>
+          <text value="OK"/>
+        </properties>
+      </component>
+    </children>
   </grid>
 </form>

@@ -2,6 +2,8 @@ package org.atom.stockwell.inner;
 
 import org.atom.stockwell.MainFrame;
 import org.atom.stockwell.controllers.Controller;
+import org.atom.stockwell.inner.dialogs.KundenHinzufuegenDialog;
+import org.atom.stockwell.inner.dialogs.KundenLoeschenDialog;
 import org.atom.stockwell.inner.dialogs.MitarbeiterHinzufuegenDialog;
 import org.atom.stockwell.inner.dialogs.MitarbeiterLoeschenDialog;
 
@@ -45,6 +47,20 @@ public class PersonenPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MitarbeiterLoeschenDialog mitarbeiterLoeschenDialog = new MitarbeiterLoeschenDialog(mainFrame,realThis);
+            }
+        });
+
+        kundenHinzufuegenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                KundenHinzufuegenDialog kundenHinzufuegenDialog = new KundenHinzufuegenDialog(mainFrame,realThis);
+            }
+        });
+
+        kundenLoeschenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                KundenLoeschenDialog kundenLoeschenDialog = new KundenLoeschenDialog(mainFrame,realThis);
             }
         });
 

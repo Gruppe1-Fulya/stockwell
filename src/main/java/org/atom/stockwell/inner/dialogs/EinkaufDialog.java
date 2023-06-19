@@ -53,7 +53,7 @@ public class EinkaufDialog extends JDialog {
         produktListBox.setSelectedIndex(-1);
 
         kundenListBox.setModel(kundenBoxModel);
-        kundenListBox.setRenderer(new KundenRenderer());
+        kundenListBox.setRenderer(new KundenLoeschenDialog.KundenRenderer());
         kundenListBox.setSelectedIndex(-1);
 
         // setting min and max values for spinners
@@ -129,21 +129,6 @@ public class EinkaufDialog extends JDialog {
             } else if (value instanceof Product) {
                 Product product = (Product) value;
                 value = product.getName();
-                setForeground(list.getForeground());
-            }
-            return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-        }
-    }
-    private static class KundenRenderer extends DefaultListCellRenderer {
-        private final String placeholder = "----";
-        @Override
-        public java.awt.Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-            if (value == null) {
-                value = placeholder;
-                setForeground(Color.GRAY);
-            } else if (value instanceof Person) {
-                Person kunde = (Person) value;
-                value = kunde.getName();
                 setForeground(list.getForeground());
             }
             return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
