@@ -6,6 +6,7 @@ import org.atom.stockwell.db.classes.Transaktion;
 
 import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public interface FinanzController {
@@ -31,18 +32,22 @@ public interface FinanzController {
                 .stream().filter(transaktion -> transaktion.getType().equals("VERKAUF"))
                 .forEach(transaktion -> status.salesPerDay.put(
                         fmt.format(transaktion.getDate()),
-                        transaktion.getCost() +
+                        transaktion.getTotalCost() +
                         status.salesPerDay.getOrDefault(fmt.format(transaktion.getDate()), 0)
                         )
                 );
+
         db.getTransaktions()
                 .stream().filter(transaktion -> transaktion.getType().equals("EINKAUF"))
                 .forEach(transaktion -> status.purchasesPerDay.put(
                                 fmt.format(transaktion.getDate()),
-                                transaktion.getCost() +
-                                        status.purchasesPerDay.getOrDefault(fmt.format(transaktion.getDate()), 0)
+                                transaktion.getTotalCost() +
+                                status.purchasesPerDay.getOrDefault(fmt.format(transaktion.getDate()), 0)
                         )
                 );
+
+        status.salesPerDay.forEach((key, value) -> status.profitPerDay.put(key, status.profitPerDay.getOrDefault(key, 0) + value));
+        status.purchasesPerDay.forEach((key, value) -> status.profitPerDay.put(key, status.profitPerDay.getOrDefault(key, 0) - value));
 
         // 3. bölge
         List<Transaktion> transaktionList = db.getTransaktions();

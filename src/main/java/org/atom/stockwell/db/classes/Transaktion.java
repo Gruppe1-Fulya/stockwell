@@ -82,7 +82,7 @@ public class Transaktion {
         this.mitarbeiter = mitarbeiter;
     }
 
-    public Long getTotalCost() {
-        return (long) getCost() * (long) getAmount();
+    public int getTotalCost() {
+        return getCost() * getAmount();
     }
 }

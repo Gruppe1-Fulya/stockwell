@@ -153,9 +153,10 @@ public class SalesGraphPanel extends JPanel {
         keys.sort(Comparator.comparing(this::parseDate));
 
         for (String key : keys) {
-            total += salesData.get(key);
+            // total += salesData.get(key);
+            // valuesData.add((long) total);
             keysData.add(key);
-            valuesData.add((long) total);
+            valuesData.add((long) salesData.get(key));
         }
 
         repaint();

@@ -148,9 +148,10 @@ public class PurchasesGraphPanel extends JPanel {
         keys.sort(Comparator.comparing(this::parseDate));
 
         for (String key : keys) {
-            total += purchasesData.get(key);
+            // total += purchasesData.get(key);
+            // valuesData.add((long) total);
             keysData.add(key);
-            valuesData.add((long) total);
+            valuesData.add((long) purchasesData.get(key));
         }
 
         repaint();

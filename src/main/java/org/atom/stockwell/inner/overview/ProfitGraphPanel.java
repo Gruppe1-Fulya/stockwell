@@ -148,9 +148,10 @@ public class ProfitGraphPanel extends JPanel{
         keys.sort(Comparator.comparing(this::parseDate));
 
         for (String key : keys) {
-            total += profitData.get(key);
+            // total += profitData.get(key);
+            // valuesData.add((long) total);
             keysData.add(key);
-            valuesData.add((long) total);
+            valuesData.add((long) profitData.get(key));
         }
 
         repaint();
