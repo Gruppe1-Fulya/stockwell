@@ -3,9 +3,9 @@ package org.atom.stockwell.inner;
 import org.atom.stockwell.MainFrame;
 import org.atom.stockwell.controllers.Controller;
 import org.atom.stockwell.db.classes.FinanzStatus;
-import org.atom.stockwell.db.classes.Product;
 import org.atom.stockwell.db.classes.Transaktion;
-import org.atom.stockwell.inner.overview.BudgetStatusPanel;
+import org.atom.stockwell.inner.overview.ProfitGraphPanel;
+import org.atom.stockwell.inner.overview.PurchasesGraphPanel;
 import org.atom.stockwell.inner.overview.SalesGraphPanel;
 
 import javax.swing.*;
@@ -13,7 +13,6 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class HomePanel extends JPanel {
     private JPanel homePanel;
@@ -71,22 +70,38 @@ public class HomePanel extends JPanel {
     private JLabel p_inventar;
     private JLabel p_datumLabel;
     private JLabel p_datum;
+    private JLabel p_transaktionIDLabel;
+    private JLabel p_transaktionID;
 
     private FinanzStatus finanzStatus = Controller.getCurrentStatus();
     private SalesGraphPanel salesGraphPanel;
+    private PurchasesGraphPanel purchasesGraphPanel;
+    private ProfitGraphPanel profitGraphPanel;
 
     public HomePanel(MainFrame mainFrame){
         setupBudget(finanzStatus.totalIncome , finanzStatus.totalOutcome);
         setupLetzteTransaktion(Arrays.stream(finanzStatus.lastTransaktionen).findFirst().get());
         finanzStatus.lastProduct.ifPresent(this::setupLetzteProduct);
+
         salesGraphPanel = new SalesGraphPanel(finanzStatus.salesPerDay);
+        purchasesGraphPanel = new PurchasesGraphPanel(finanzStatus.purchasesPerDay);
+        profitGraphPanel = new ProfitGraphPanel(finanzStatus.profitPerDay);
+
         displayPanel(mainFrame,salesPanel, salesGraphPanel, BorderLayout.CENTER);
+        displayPanel(mainFrame,purchasesPanel,purchasesGraphPanel,BorderLayout.CENTER);
+        displayPanel(mainFrame,profitPanel,profitGraphPanel,BorderLayout.CENTER);
+
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 finanzStatus = Controller.getCurrentStatus();
+
                 salesGraphPanel.updateData(finanzStatus.salesPerDay);
                 salesGraphPanel.repaint();
+                purchasesGraphPanel.updateData(finanzStatus.purchasesPerDay);
+                purchasesGraphPanel.repaint();
+                profitGraphPanel.updateData(finanzStatus.profitPerDay);
+
                 setupBudget(finanzStatus.totalIncome , finanzStatus.totalOutcome);
                 setupLetzteTransaktion(Arrays.stream(finanzStatus.lastTransaktionen).findFirst().get());
                 finanzStatus.lastProduct.ifPresent(transaktion -> setupLetzteProduct(transaktion));

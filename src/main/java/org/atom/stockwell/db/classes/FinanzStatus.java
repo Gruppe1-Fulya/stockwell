@@ -12,6 +12,9 @@ public class FinanzStatus {
     public int totalIncome;
     public int totalOutcome;
     public HashMap<String, Integer> salesPerDay = new HashMap<>();
+
+    public HashMap<String, Integer> purchasesPerDay = new HashMap<>();
+    public HashMap<String, Integer> profitPerDay = new HashMap<>();
     public Transaktion[] lastTransaktionen;
     public Optional<Transaktion> lastProduct;
 

@@ -35,6 +35,14 @@ public interface FinanzController {
                         status.salesPerDay.getOrDefault(fmt.format(transaktion.getDate()), 0)
                         )
                 );
+        db.getTransaktions()
+                .stream().filter(transaktion -> transaktion.getType().equals("EINKAUF"))
+                .forEach(transaktion -> status.purchasesPerDay.put(
+                                fmt.format(transaktion.getDate()),
+                                transaktion.getCost() +
+                                        status.purchasesPerDay.getOrDefault(fmt.format(transaktion.getDate()), 0)
+                        )
+                );
 
         // 3. bölge
         List<Transaktion> transaktionList = db.getTransaktions();

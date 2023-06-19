@@ -1,25 +1,20 @@
 package org.atom.stockwell.inner.overview;
 
-import ch.qos.logback.core.joran.action.NOPAction;
-import org.atom.stockwell.MainFrame;
-import org.atom.stockwell.controllers.Controller;
-import org.springframework.context.ApplicationListener;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
 
-public class SalesGraphPanel extends JPanel {
-
-    private JPanel salesGraphPanel;
+public class ProfitGraphPanel extends JPanel{
+    private JPanel profitGraphPanel;
     private ArrayList<String> keysData = new ArrayList<>();
     private ArrayList<Long> valuesData = new ArrayList<>();
-    public SalesGraphPanel(HashMap<String, Integer> salesData) {
-        updateData(salesData);
+    public ProfitGraphPanel(HashMap<String, Integer> profitData) {
+        updateData(profitData);
     }
 
     @Override
@@ -110,11 +105,11 @@ public class SalesGraphPanel extends JPanel {
             g.fillOval(x - 3, y - 3, 6, 6);
 
             // Value labels on data points
-            String salesLabel = String.valueOf(value);
-            int salesLabelWidth = fm.stringWidth(salesLabel);
-            int valueLabelX = x - salesLabelWidth / 2;
+            String profitLabel = String.valueOf(value);
+            int profitLabelWidth = fm.stringWidth(profitLabel);
+            int valueLabelX = x - profitLabelWidth / 2;
             int valueLabelY = y - 10;
-            g.drawString(salesLabel, valueLabelX, valueLabelY);
+            g.drawString(profitLabel, valueLabelX, valueLabelY);
 
             // Month labels
             g.drawString(date, x - labelWidth / 2, height - 20);
@@ -144,16 +139,16 @@ public class SalesGraphPanel extends JPanel {
         return (int) ((getMaxValue() != min) ? min : min - 1);
     }
 
-    public void updateData(HashMap<String, Integer> salesData) {
+    public void updateData(HashMap<String, Integer> profitData) {
         keysData.clear();
         valuesData.clear();
         int total = 0;
 
-        var keys = new ArrayList<>(salesData.keySet());
+        var keys = new ArrayList<>(profitData.keySet());
         keys.sort(Comparator.comparing(this::parseDate));
 
         for (String key : keys) {
-            total += salesData.get(key);
+            total += profitData.get(key);
             keysData.add(key);
             valuesData.add((long) total);
         }
@@ -168,5 +163,4 @@ public class SalesGraphPanel extends JPanel {
             throw new RuntimeException(e);
         }
     }
-
 }
