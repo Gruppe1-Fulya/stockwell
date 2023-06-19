@@ -8,6 +8,7 @@ public class Person {
     private String phoneNo;
     private String address;
     private String email;
+    private boolean active;
 
     public Person() {
         id = UUID.randomUUID().toString();
@@ -54,5 +55,13 @@ public class Person {
     @Override
     public String toString() {
         return "Person id = " + id + " name = " + name + " email = " + email;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

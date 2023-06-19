@@ -46,6 +46,7 @@ public class DatabaseManager {
                 .setPhoneNumber(rs.getString("telefonNo"))
                 .setAdress(rs.getString("adresse"))
                 .setEmail(rs.getString("email"))
+                .setActive(rs.getInt("active") == 1)
                 .doneBuild());
     }
 
@@ -337,7 +338,8 @@ public class DatabaseManager {
                 "name = '%s'," +
                 "telefonNo = '%s'," +
                 "adresse = '%s'," +
-                "email = '%s'" +
+                "email = '%s'," +
+                "active = '%d'" +
                 "where personId = '%s'";
 
         sql = String.format(sql,
@@ -345,6 +347,7 @@ public class DatabaseManager {
                 person.getPhoneNo(),
                 person.getAddress(),
                 person.getEmail(),
+                person.isActive(),
                 person.getId());
 
         try {

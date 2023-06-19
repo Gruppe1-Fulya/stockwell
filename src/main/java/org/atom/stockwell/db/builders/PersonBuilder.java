@@ -36,6 +36,11 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder setActive(boolean active) {
+        currentPerson.setActive(active);
+        return this;
+    }
+
     public Person doneBuild() {
         return currentPerson;
     }

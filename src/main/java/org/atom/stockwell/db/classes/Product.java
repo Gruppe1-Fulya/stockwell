@@ -8,7 +8,6 @@ public class Product {
     private String barcodeId;
     private String name;
     private String category;
-
     private boolean active;
 
     public Product() {

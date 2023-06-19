@@ -33,7 +33,7 @@ public interface ProduktController {
         if (db.getProductList()
                 .stream()
                 .noneMatch(p -> p.getId().equals(product.getId())))
-            throw new Exception("[SW] PRODUCT ALREADY EXITS");
+            throw new Exception("[SW] PRODUCT NOT EXITS");
 
         product.setActive(false);
         return db.updateProduct(product);

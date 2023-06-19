@@ -39,6 +39,18 @@ public class Controller {
         return BaseController.getKundeTable(personenPanel);
     }
 
+    public static boolean AddPersonDB(Person person) throws Exception {
+        return BaseController.AddPersonDB(person);
+    }
+
+    public static boolean AddMitarbeiterDB(Mitarbeiter mitarbeiter) throws Exception {
+        return BaseController.AddMitarbeiterDB(mitarbeiter);
+    }
+
+    public static boolean DisposePersonDB(Person person) throws Exception {
+        return BaseController.DisposePersonDB(person);
+    }
+
     // LagerController
     public static DefaultTableModel getVerlaufTable(LagerPanel lagerPanel) {
         return LagerController.getVerlaufTable(lagerPanel);

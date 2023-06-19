@@ -9,6 +9,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public interface BaseController {
         DatabaseManager db = new DatabaseManager();
         return db.getMitarbeiterList()
                 .stream()
-                .anyMatch(p -> p.getUsername().equals(username));
+                .anyMatch(p -> p.getUsername().equals(username) && p.isActive());
     }
 
     static boolean checkIfPasswordEqual(String username, String password) {
@@ -115,4 +116,39 @@ public interface BaseController {
 
         return tableModel;
     }
+
+    static boolean AddPersonDB(Person person) throws Exception{
+        DatabaseManager db = new DatabaseManager();
+
+        if (db.getPersonList()
+                .stream()
+                .anyMatch(p -> p.getId().equals(person.getId())))
+            throw new Exception("[SW] PERSON ALREADY EXITS");
+
+        return db.createNewPerson(person);
+    }
+
+    static boolean AddMitarbeiterDB(Mitarbeiter mitarbeiter) throws Exception{
+        DatabaseManager db = new DatabaseManager();
+
+        if (db.getMitarbeiterList()
+                .stream()
+                .anyMatch(m -> m.getId().equals(mitarbeiter.getId())))
+            throw new Exception("[SW] MITARBEITER ALREADY EXITS");
+
+        return db.createNewMitarbeiter(mitarbeiter);
+    }
+
+    static boolean DisposePersonDB(Person person) throws Exception {
+        DatabaseManager db = new DatabaseManager();
+
+        if (db.getPersonList()
+                .stream()
+                .noneMatch(p -> p.getId().equals(person.getId())))
+            throw new Exception("[SW] PERSON NOT EXITS");
+
+        person.setActive(false);
+        return db.updatePerson(person);
+    }
+
 }

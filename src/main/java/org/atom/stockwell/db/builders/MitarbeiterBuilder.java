@@ -18,6 +18,7 @@ public class MitarbeiterBuilder {
         currentMitarbeiter.setEmail(person.getEmail());
         currentMitarbeiter.setAddress(person.getAddress());
         currentMitarbeiter.setPhoneNo(person.getPhoneNo());
+        currentMitarbeiter.setActive(person.isActive());
         return this;
     }
 

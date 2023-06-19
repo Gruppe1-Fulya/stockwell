@@ -35,8 +35,6 @@ public class SalesGraphPanel extends JPanel {
             keysData.add(key);
             valuesData.add((long) total);
         }
-        System.out.println(keysData);
-        System.out.println(valuesData);
     }
 
     @Override
