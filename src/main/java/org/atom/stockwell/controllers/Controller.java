@@ -64,6 +64,10 @@ public class Controller {
         return LagerController.AddProductLagerDB(product);
     }
 
+    public static int GetProductCountInLager(Product product) {
+        return LagerController.GetProductCountInLager(product);
+    }
+
     // ProduktController
     public static List<Product> GetProductList() {
         return ProduktController.GetProductList();

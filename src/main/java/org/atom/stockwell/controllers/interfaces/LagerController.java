@@ -122,4 +122,14 @@ public interface LagerController extends BaseController {
         throw new Exception("[SW] PRODUCT ALREADY EXITS");
     }
 
+    static int GetProductCountInLager(Product product) {
+        int c = 0;
+        DatabaseManager db = new DatabaseManager();
+        for (LagerProduct lagerProduct : db.getLager().lagerProducts()) {
+            if (lagerProduct.getProduct().getId().equals(product.getId()))
+                c += lagerProduct.getAmount();
+        }
+        return c;
+    }
+
 }

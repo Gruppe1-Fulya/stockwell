@@ -10,6 +10,8 @@ import org.atom.stockwell.inner.overview.SalesGraphPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -70,7 +72,7 @@ public class HomePanel extends JPanel {
     private JLabel p_datumLabel;
     private JLabel p_datum;
 
-    private final FinanzStatus finanzStatus = Controller.getCurrentStatus();
+    private FinanzStatus finanzStatus = Controller.getCurrentStatus();
 
     public HomePanel(MainFrame mainFrame){
         add(homePanel);
@@ -80,6 +82,18 @@ public class HomePanel extends JPanel {
         //graphPanel.add(new SalesGraphPanel(salesData));
         displayPanel(mainFrame,salesPanel, new SalesGraphPanel(finanzStatus.salesPerDay), BorderLayout.CENTER);
         // displayPanel(mainFrame,budgetStatus, new BudgetStatusPanel(finanzStatus), BorderLayout.CENTER);
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                finanzStatus = Controller.getCurrentStatus();
+                setupBudget(finanzStatus.totalIncome , finanzStatus.totalOutcome);
+                setupLetzteTransaktion(Arrays.stream(finanzStatus.lastTransaktionen).findFirst().get());
+                finanzStatus.lastProduct.ifPresent(transaktion -> setupLetzteProduct(transaktion));
+                displayPanel(mainFrame,salesPanel, new SalesGraphPanel(finanzStatus.salesPerDay), BorderLayout.CENTER);
+            }
+        });
+
     }
 
 
@@ -116,7 +130,7 @@ public class HomePanel extends JPanel {
         p_kategorie.setText(transaktion.getProduct().getCategory());
         p_barcode.setText(transaktion.getProduct().getBarcodeId());
         p_anzahl.setText(String.valueOf(transaktion.getAmount()));
-        p_inventar.setText("BULUCAM !!"); // burasını çekmek biraz uzun ondan sonra yapıcam
+        p_inventar.setText(String.valueOf(Controller.GetProductCountInLager(transaktion.getProduct())));
         p_datum.setText(transaktion.getDate().toString());
     }
 }
