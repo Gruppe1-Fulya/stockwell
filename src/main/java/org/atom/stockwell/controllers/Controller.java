@@ -25,7 +25,9 @@ public class Controller {
     public static List<Person> GetKundenList() {
         return BaseController.GetKundenList();
     }
-
+    public static List<Mitarbeiter> GetMitarbeiterList(){
+        return BaseController.GetMitarbeiterList();
+    }
     public static Optional<Mitarbeiter> GetMitarbeiter(String username) {
         return BaseController.GetMitarbeiter(username);
     }

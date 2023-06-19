@@ -33,7 +33,7 @@ public class MainPanel extends JPanel {
         InnerPanel.add(new HomePanel(mainFrame),"home");
         InnerPanel.add(new LagerPanel(mainFrame),"lager");
         InnerPanel.add(new TransaktionenPanel(mainFrame),"transaktionen");
-        InnerPanel.add(new PersonenPanel(),"personen");
+        InnerPanel.add(new PersonenPanel(mainFrame),"personen");
 
         displayPanel(mainFrame,"home");
         homeButton.addActionListener(new ActionListener() {

@@ -39,6 +39,10 @@ public interface BaseController {
         return (new DatabaseManager()).getKundeList();
     }
 
+    static List<Mitarbeiter> GetMitarbeiterList(){
+        return (new DatabaseManager()).getMitarbeiterList();
+    }
+
     static Optional<Mitarbeiter> GetMitarbeiter(String username) {
         return (new DatabaseManager()).getMitarbeiterList()
                 .stream()
@@ -51,8 +55,7 @@ public interface BaseController {
                 "ID",
                 "Name",
                 "Telefonnummer",
-                "E-Mail-Adresse",
-                "Abteilung"
+                "E-Mail-Adresse"
         };
 
         DatabaseManager db = new DatabaseManager();
@@ -87,8 +90,7 @@ public interface BaseController {
                 "ID",
                 "Name",
                 "Telefonnummer",
-                "E-Mail-Adresse",
-                "Abteilung"
+                "E-Mail-Adresse"
         };
 
         DatabaseManager db = new DatabaseManager();
@@ -123,7 +125,7 @@ public interface BaseController {
         if (db.getPersonList()
                 .stream()
                 .anyMatch(p -> p.getId().equals(person.getId())))
-            throw new Exception("[SW] PERSON ALREADY EXITS");
+            throw new Exception("[SW] PERSON ALREADY EXISTS");
 
         return db.createNewPerson(person);
     }
@@ -134,7 +136,7 @@ public interface BaseController {
         if (db.getMitarbeiterList()
                 .stream()
                 .anyMatch(m -> m.getId().equals(mitarbeiter.getId())))
-            throw new Exception("[SW] MITARBEITER ALREADY EXITS");
+            throw new Exception("[SW] MITARBEITER ALREADY EXISTS");
 
         return db.createNewMitarbeiter(mitarbeiter);
     }
@@ -145,7 +147,7 @@ public interface BaseController {
         if (db.getPersonList()
                 .stream()
                 .noneMatch(p -> p.getId().equals(person.getId())))
-            throw new Exception("[SW] PERSON NOT EXITS");
+            throw new Exception("[SW] PERSON DOESN'T EXIST");
 
         person.setActive(false);
         return db.updatePerson(person);

@@ -1,10 +1,15 @@
 package org.atom.stockwell.inner;
 
+import org.atom.stockwell.MainFrame;
 import org.atom.stockwell.controllers.Controller;
+import org.atom.stockwell.inner.dialogs.MitarbeiterHinzufuegenDialog;
+import org.atom.stockwell.inner.dialogs.MitarbeiterLoeschenDialog;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -20,10 +25,29 @@ public class PersonenPanel extends JPanel {
     private JTable mitarbeiterTable;
     private JLabel kundenLabel;
     private JLabel mitarbeiterLabel;
+    private JButton mitarbeiterHinzufuegenButton;
+    private JButton mitarbeiterLoeschenButton;
+    private JButton kundenHinzufuegenButton;
+    private JButton kundenLoeschenButton;
+    private PersonenPanel realThis;
 
-    public PersonenPanel(){
+    public PersonenPanel(MainFrame mainFrame){
+        realThis = this;
         add(personenPanel);
         updateTables();
+        mitarbeiterHinzufuegenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MitarbeiterHinzufuegenDialog mitarbeiterHinzufuegenDialog = new MitarbeiterHinzufuegenDialog(mainFrame,realThis);
+            }
+        });
+        mitarbeiterLoeschenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MitarbeiterLoeschenDialog mitarbeiterLoeschenDialog = new MitarbeiterLoeschenDialog(mainFrame,realThis);
+            }
+        });
+
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
