@@ -29,7 +29,11 @@ public class MitarbeiterLoeschenDialog extends JDialog{
         setLocationRelativeTo(mainFrame);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-        List<Mitarbeiter> mitarbeiterList = Controller.GetMitarbeiterList();
+        // KENDİMİZİ SİLEMEYELİM
+        List<Mitarbeiter> mitarbeiterList = Controller.GetMitarbeiterList()
+                .stream()
+                .filter(mitarbeiter -> !mitarbeiter.getUsername().equals(mainFrame.getMainPanel().getUsername()))
+                .toList();
 
         DefaultComboBoxModel<Mitarbeiter> mitarbeiterBoxModel = new DefaultComboBoxModel<>();
         for (Mitarbeiter mitarbeiter  : mitarbeiterList) {

@@ -36,11 +36,17 @@ public interface BaseController {
     }
 
     static List<Person> GetKundenList() {
-        return (new DatabaseManager()).getKundeList();
+        return new DatabaseManager().getKundeList()
+                .stream()
+                .filter(Person::isActive)
+                .toList();
     }
 
     static List<Mitarbeiter> GetMitarbeiterList(){
-        return (new DatabaseManager()).getMitarbeiterList();
+        return new DatabaseManager().getMitarbeiterList()
+                .stream()
+                .filter(Person::isActive)
+                .toList();
     }
 
     static Optional<Mitarbeiter> GetMitarbeiter(String username) {
@@ -58,8 +64,7 @@ public interface BaseController {
                 "E-Mail-Adresse"
         };
 
-        DatabaseManager db = new DatabaseManager();
-        List<Mitarbeiter> mitarbeiterList = db.getMitarbeiterList();
+        List<Mitarbeiter> mitarbeiterList = BaseController.GetMitarbeiterList();
 
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
@@ -93,8 +98,7 @@ public interface BaseController {
                 "E-Mail-Adresse"
         };
 
-        DatabaseManager db = new DatabaseManager();
-        List<Person> kundeList = db.getKundeList();
+        List<Person> kundeList = BaseController.GetKundenList();
 
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
@@ -137,6 +141,11 @@ public interface BaseController {
                 .stream()
                 .anyMatch(m -> m.getId().equals(mitarbeiter.getId())))
             throw new Exception("[SW] MITARBEITER ALREADY EXISTS");
+
+        if (db.getMitarbeiterList()
+                .stream()
+                .anyMatch(m -> m.getUsername().equals(mitarbeiter.getUsername())))
+            throw new Exception("[SW] USERNAME TAKEN");
 
         return db.createNewMitarbeiter(mitarbeiter);
     }

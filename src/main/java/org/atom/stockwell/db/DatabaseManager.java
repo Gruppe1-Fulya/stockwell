@@ -347,7 +347,7 @@ public class DatabaseManager {
                 person.getPhoneNo(),
                 person.getAddress(),
                 person.getEmail(),
-                person.isActive(),
+                (person.isActive()) ? 1 : 0,
                 person.getId());
 
         try {
