@@ -21,8 +21,8 @@ public class ProfitGraphPanel extends XChartPanel<CategoryChart> {
     public ProfitGraphPanel(HashMap<String, Integer> profitData) {
         super(new CategoryChart(320, 80));
         this.getChart().setXAxisTitle("Datum");
-        this.getChart().setYAxisTitle("Profit");
-        this.getChart().setTitle("Profit");
+        this.getChart().setYAxisTitle("Gewinn");
+        this.getChart().setTitle("Gewinn");
         this.getChart().addSeries("e",
                 keysData,
                 valuesData

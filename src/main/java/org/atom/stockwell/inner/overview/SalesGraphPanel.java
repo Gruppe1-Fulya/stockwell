@@ -30,7 +30,7 @@ public class SalesGraphPanel extends XChartPanel<CategoryChart> {
     public SalesGraphPanel(HashMap<String, Integer> salesData) {
         super(new CategoryChart(320, 80));
         this.getChart().setXAxisTitle("Datum");
-        this.getChart().setYAxisTitle("Ertrag");
+        this.getChart().setYAxisTitle("Einkommen");
         this.getChart().setTitle("Verkäufe");
         this.getChart().addSeries("e",
                 keysData,

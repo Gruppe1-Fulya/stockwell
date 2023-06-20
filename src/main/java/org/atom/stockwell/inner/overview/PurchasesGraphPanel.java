@@ -21,7 +21,7 @@ public class PurchasesGraphPanel extends XChartPanel<CategoryChart> {
     public PurchasesGraphPanel(HashMap<String, Integer> purchasesData) {
         super(new CategoryChart(320, 80));
         this.getChart().setXAxisTitle("Datum");
-        this.getChart().setYAxisTitle("Aufwand");
+        this.getChart().setYAxisTitle("Ausgaben");
         this.getChart().setTitle("Einkäufe");
         this.getChart().addSeries("e",
                 keysData,
